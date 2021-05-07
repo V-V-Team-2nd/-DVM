@@ -22,6 +22,7 @@
         <LibraryCoordinatesState>
           <option name="artifactId" value="pycharmPY" />
           <option name="groupId" value="com.jetbrains.intellij.pycharm" />
+        </LibraryCoordinatesState>
         <LibraryCoordinatesState>
           <option name="artifactId" value="pycharmPY" />
           <option name="groupId" value="com.jetbrains" />
