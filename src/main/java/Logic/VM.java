@@ -3,8 +3,8 @@ package Logic;
 public class VM {
     /* Attributes */
 
-    private char vmID;
-    private char[] vmAddress = new char[21];
+    private int vmID;
+    private String vmAddress;
     private boolean isOperating;
 
     /* Methods */
@@ -14,16 +14,16 @@ public class VM {
     VM(){
         this.isOperating = false;
     }
-    public char[] getVmAddress(){
+    public String getVmAddress(){
         return vmAddress;
     }
     public boolean getIsOperating(){
         return isOperating;
     }
-    public void setVmID(char id){
+    public void setVmID(int id){
         this.vmID = id;
     }
-    public void setVmAddress(char[] vmA){
+    public void setVmAddress(String vmA){
         this.vmAddress = vmA;
     }
     public void setIsOperating(boolean b){
