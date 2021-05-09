@@ -27,13 +27,28 @@ public class Card {
         return balance;
     }
 
+    /*public void setCardID(String cardID) {
+        this.cardID = cardID;
+    }
+
+    public void setIsValid(boolean valid) {
+        isValid = valid;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+        *//* if (this.balance < 0) {
+            this.balance = 0;
+        }*//*
+    }*/
+
     /*  Functionality :
-            인자로 들어온 카드 번호를 cardID와 비교한 후
-            일치하면 true, 일치하지 않으면 false를 반환함.
-    *   Parameters : 비교할 카드 번호
-    *   Return values :
-            true : 일치함
-            false : 일치하지 않음 */
+                        인자로 들어온 카드 번호를 cardID와 비교한 후
+                        일치하면 true, 일치하지 않으면 false를 반환함.
+                *   Parameters : 비교할 카드 번호
+                *   Return values :
+                        true : 일치함
+                        false : 일치하지 않음 */
     public boolean checkCardID(String cid){
         return cardID.equals(cid);
     }
@@ -59,7 +74,7 @@ public class Card {
         Parameters : 증가시킬 금액
         Return values : void
     * */
-    public void restoreBalance(int amount){
+    public void restoreBalance(int amount) {
         this.balance += amount;
     }
 }
