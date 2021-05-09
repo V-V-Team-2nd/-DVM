@@ -1,31 +1,34 @@
 package Logic;
 
-public class Msg {
-    /* Attributes */
+import java.io.Serializable;
 
-    private char src_id;
-    private char dst_id;
-    private char type;
-    private char[] description = new char[21];
+public class Msg implements Serializable {
+    /* Attributes */
+    private static final long serialVersionUID = 1L;
+
+    private int src_id;
+    private int dst_id;
+    private int type;
+    private String description;
 
     /* Methods */
-    Msg(char si, char di, char t, char[] d){
+    Msg(int si, int di, int t, String d){
         this.src_id = si;
         this.dst_id = di;
         this.type = t;
         this.description = d;
     }
 
-    public char getSrc_id(){
+    public int getSrc_id(){
         return src_id;
     }
-    public char getDst_id(){
+    public int getDst_id(){
         return dst_id;
     }
-    public char getType(){
+    public int getType(){
         return type;
     }
-    public char[] getDescription(){
+    public String getDescription(){
         return description;
     }
 }
