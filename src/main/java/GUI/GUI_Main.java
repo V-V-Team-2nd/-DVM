@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
@@ -13,6 +14,7 @@ import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
+
 import java.awt.Rectangle;
 
 public class GUI_Main {
@@ -39,13 +41,17 @@ public class GUI_Main {
      * Create the application.
      */
     public GUI_Main() {
-        initialize();
+
+        showMain();
+
     }
 
     /**
      * Initialize the contents of the frame.
      */
-    private void initialize() {
+
+    public void showMain() {
+
         frmDvm = new JFrame();
         frmDvm.setTitle("DVM");
         frmDvm.setBounds(10, 10, 645, 645);
@@ -53,19 +59,19 @@ public class GUI_Main {
         frmDvm.getContentPane().setLayout(null);
 
 
-        JButton btnNewButton_5 = new JButton("코카콜라");
-        btnNewButton_5.addMouseListener(new MouseAdapter() {
+
+        JButton menu_0 = new JButton("코카콜라");
+        menu_0.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-            }
-            @Override
-            public void mouseEntered(MouseEvent e) {
+                selectMenu();
             }
         });
-        btnNewButton_5.setHorizontalTextPosition(SwingConstants.CENTER);
-        btnNewButton_5.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
-        btnNewButton_5.setBounds(12, 49, 120, 63);
-        frmDvm.getContentPane().add(btnNewButton_5);
+        menu_0.setHorizontalTextPosition(SwingConstants.CENTER);
+        menu_0.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
+        menu_0.setBounds(12, 49, 120, 63);
+        frmDvm.getContentPane().add(menu_0);
+
 
         JButton btnNewButton_1 = new JButton("제로콜라");
         btnNewButton_1.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -74,9 +80,7 @@ public class GUI_Main {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
+
         });
         btnNewButton_1.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
         btnNewButton_1.setBounds(134, 49, 120, 63);
@@ -88,9 +92,7 @@ public class GUI_Main {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
+
         });
         btnNewButton_1_2.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
         btnNewButton_1_2.setBounds(134, 170, 120, 63);
@@ -103,9 +105,7 @@ public class GUI_Main {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
+
         });
         btnNewButton_1_1_2.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
         btnNewButton_1_1_2.setBounds(376, 170, 120, 63);
@@ -118,9 +118,7 @@ public class GUI_Main {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
+
         });
         btnNewButton_1_1_1_1.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
         btnNewButton_1_1_1_1.setBounds(497, 170, 120, 63);
@@ -133,9 +131,7 @@ public class GUI_Main {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
+
         });
         btnNewButton_1_2_1.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
         btnNewButton_1_2_1.setBounds(134, 297, 120, 63);
@@ -148,10 +144,7 @@ public class GUI_Main {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-            @Override
-            public void mouseEntered(MouseEvent e) {
 
-            }
         });
         btnNewButton_3.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
         btnNewButton_3.setBounds(12, 170, 120, 63);
@@ -164,9 +157,7 @@ public class GUI_Main {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
+
         });
         btnNewButton_3_1.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
         btnNewButton_3_1.setBounds(12, 297, 120, 63);
@@ -179,9 +170,7 @@ public class GUI_Main {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
+
         });
         btnNewButton_2.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
         btnNewButton_2.setBounds(255, 49, 120, 63);
@@ -194,9 +183,7 @@ public class GUI_Main {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
+
         });
         btnNewButton_2_1_1.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
         btnNewButton_2_1_1.setBounds(255, 297, 120, 63);
@@ -209,9 +196,7 @@ public class GUI_Main {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
+
         });
         btnNewButton_2_1.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
         btnNewButton_2_1.setBounds(255, 170, 120, 63);
@@ -224,9 +209,7 @@ public class GUI_Main {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
+
         });
         btnNewButton_1_1_2_1.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
         btnNewButton_1_1_2_1.setBounds(376, 297, 120, 63);
@@ -239,9 +222,7 @@ public class GUI_Main {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
+
         });
         btnNewButton_1_1_1_1_1.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
         btnNewButton_1_1_1_1_1.setBounds(497, 297, 120, 63);
@@ -253,9 +234,7 @@ public class GUI_Main {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
+
         });
         btnNewButton_1_1_1.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
         btnNewButton_1_1_1.setBounds(497, 49, 120, 63);
@@ -268,9 +247,7 @@ public class GUI_Main {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
+
         });
         btnNewButton_1_1.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
         btnNewButton_1_1.setBounds(376, 49, 120, 63);
@@ -282,9 +259,7 @@ public class GUI_Main {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
+
         });
 
         btnNewButton_3_1_1.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
@@ -296,9 +271,6 @@ public class GUI_Main {
         btnNewButton_1_2_1_1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-            }
-            @Override
-            public void mouseEntered(MouseEvent e) {
             }
 
         });
@@ -312,9 +284,6 @@ public class GUI_Main {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
 
         });
         btnNewButton_2_1_1_1.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
@@ -327,9 +296,7 @@ public class GUI_Main {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
+
         });
         btnNewButton_1_1_2_1_1.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
         btnNewButton_1_1_2_1_1.setBounds(376, 419, 120, 63);
@@ -341,9 +308,7 @@ public class GUI_Main {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
+
         });
         btnNewButton_1_1_1_1_1_1.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
         btnNewButton_1_1_1_1_1_1.setBounds(497, 419, 120, 63);
@@ -354,9 +319,7 @@ public class GUI_Main {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
+
         });
         btnNewButton_4.setFont(new Font("맑은 고딕", Font.BOLD, 18));
         btnNewButton_4.setBounds(241, 526, 154, 50);
@@ -483,4 +446,9 @@ public class GUI_Main {
         num_20.setBounds(551, 492, 29, 15);
         frmDvm.getContentPane().add(num_20);
     }
+
+
+    private void selectMenu() {
+    }
+
 }

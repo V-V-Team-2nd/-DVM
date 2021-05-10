@@ -58,13 +58,17 @@ public class GUI_Start extends JFrame implements KeyListener{
      */
     public GUI_Start() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        initialize();
+
+        showStart();
+
     }
 
     /**
      * Initialize the contents of the frame.
      */
-    private void initialize() {
+
+    public void showStart() {
+
         frame = new JFrame();
         frame.setBounds(10, 10, 645, 645);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

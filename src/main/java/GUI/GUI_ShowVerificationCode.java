@@ -12,7 +12,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.border.LineBorder;
 import javax.swing.JButton;
 
-public class GUI_ShowVerificationCode extends JFrame implements KeyListener{
+
+public class GUI_ShowVerificationCode {
+
 
     private JFrame frame;
 
@@ -42,7 +44,9 @@ public class GUI_ShowVerificationCode extends JFrame implements KeyListener{
     /**
      * Initialize the contents of the frame.
      */
-    private void showVerificationCode() {
+
+    public void showVerificationCode() {
+
         frame = new JFrame();
         frame.setBounds(10, 10, 645, 645);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

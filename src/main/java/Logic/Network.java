@@ -11,7 +11,6 @@ public class Network extends Thread {
     private final static int SERVER_PORT = 9000;
     private Controller controller = null;
 
-
     /* Methods */
     Network(Controller controller){
         this.controller = controller;
@@ -70,8 +69,10 @@ public class Network extends Thread {
         }
     }
 
-    public void requestStock(int beverageID){
+    public String[] requestStock(int beverageID){
+        String[] stockAvailable = new String[10];
 
+        return stockAvailable;
     }
     public void requestVerificationCode(int dst_id, int beverageID){
 
