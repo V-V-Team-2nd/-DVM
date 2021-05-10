@@ -7,12 +7,13 @@ public class Controller {
 
     /* Attributes */
 
-    VMList vmList = new VMList();
-    CardList cardList = new CardList();
-    VerificationCodeList verificationCodeList = new VerificationCodeList();
-    Network network = new Network(this);
-    Beverage[] beverages = new Beverage[20];
-    int[] stock = new int[20];
+    private VMList vmList = new VMList();
+    private CardList cardList = new CardList();
+    private VerificationCodeList verificationCodeList = new VerificationCodeList();
+    private Network network = new Network(this);
+    private Beverage[] beverages = new Beverage[20];
+    private int[] stock = new int[20];
+    private int nowMenu;
 
     /* Methods */
 
@@ -82,5 +83,57 @@ public class Controller {
     }
 
     /* GUI에서 사용할 interfaces */
-
+    /*  Functionality :
+            GUI에서 사용자로부터 입력받은 메뉴의 번호를 인자로 받아
+            해당 메뉴의 재고를 확인한 뒤 재고가 있으면 null을 return하고, (이후 GUI에서 Cardpayment 실행)
+            재고가 없으면 Network를 통해 stock available한 DVM들의 주소를 리턴한다.
+            이 경우, 크기가 10인 String 배열을 return 하며 각 index 값 + 1이 자판기의 아이디이고,
+            주소가 null이면 해당 자판기는 available 하지 않은 것이다.
+    *   Parameters : beverage ID
+    *   Return values :
+    *       null : Stock
+    * */
+    public String[] checkStock(int beverageID){
+        nowMenu = beverageID;
+        if(stock[beverageID] == 0){
+            return network.requestStock(beverageID);
+        }
+        else{
+            return null;
+        }
+    }
+    /*  Functionality :
+            GUI에서 사용자로부터 입력받은 카드 번호를 인자로 받아 결제를 진행한다.
+            해당 카드의 정보를 조회한 뒤, 결제 결과를 반환한다.
+    *   Parameters : cardID
+    *   Return values :
+    *       0 : 결제 성공
+    *       1 : 일치하는 카드가 없음
+    *       2 : 일치하는 카드 있음 & 카드가 유효하지 않음
+    *       3 : 일치하는 카드가 있음 & 유효 & 잔액이 부족
+    * */
+    public int cardPayment(String cardID){
+        return cardList.checkCard(cardID, beverages[nowMenu].getPrice());
+    }
+    /*  Functionality :
+    *       GUI에서 사용자로부터 입력받은 카드 번호를 인자로 받아 선결제를 진행한다.
+    *       해당 카드의 번호를 조회하고, 인증코드 생성 여부에 따라 결과를 아래 Return values로 반환한다.
+    *   Parameters : cardID
+    *   Return values :
+    *       인증코드 : 결제 성공
+    *       "1" : 일치하는 카드가 없음
+    *       "2" : 일치하는 카드가 있음 & 카드가 유효하지 않음
+    *       "3" : 일치하는 카드가 있음 & 유효 & 잔액이 부족
+    *       "4" : 환불 됨
+    * */
+    public String cardPrepay(String cardID){
+        String s = Integer.toString( cardList.checkCard( cardID, beverages[nowMenu].getPrice() ) );
+        if(s.equals("0")){
+            /* 결제 성공 시 동작 */
+            return s;
+        }
+        else {
+            return s;
+        }
+    }
 }
