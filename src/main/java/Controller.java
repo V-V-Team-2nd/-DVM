@@ -8,7 +8,7 @@ public class Controller {
     private VMList vmList = new VMList();
     private CardList cardList = new CardList();
     private VerificationCodeList verificationCodeList = new VerificationCodeList();
-    private Network network = new Network(this);
+    private Network3 network = new Network3(this);
     private Beverage[] beverages = new Beverage[20];
     private int[] stock = new int[20];
     private int nowMenu;
