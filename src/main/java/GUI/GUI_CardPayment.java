@@ -91,7 +91,8 @@ public class GUI_CardPayment extends JFrame implements KeyListener{
         NameLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         NameLabel.setBounds(158, 100, 305, 56);
         frame.getContentPane().add(NameLabel);
-        
+
+      
         btnNewButton_2 = new JButton("1");
         btnNewButton_2.addMouseListener(new MouseAdapter() {
             @Override
