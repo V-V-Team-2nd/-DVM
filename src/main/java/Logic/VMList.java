@@ -19,8 +19,8 @@ public class VMList {
     *   Return value : void
     * */
     VMList(){
-        int i;
-        for(i=0;i<10;i++){
+        for(int i=0;i<10;i++){
+            operatingList[i] = new VM();
             operatingList[i].setVmID(i+1);
         }
         count = 0;
@@ -86,7 +86,7 @@ public class VMList {
     *   Parameters : VM 아이디, 주소
     *   Return values : void
     *   */
-    public void addOperatingList(int vmID, String address){
+    public void addVM(int vmID, String address){
         this.operatingList[vmID-1].setVmAddress(address);
         this.operatingList[vmID-1].setIsOperating(true);
         operatingLength++;

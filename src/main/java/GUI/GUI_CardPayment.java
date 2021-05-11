@@ -10,9 +10,9 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class GUI_CardPayment extends JFrame implements KeyListener{
+public class GUI_CardPayment extends JPanel implements KeyListener{
 
-    private JFrame frame;
+    private GUI_Frame gui_frame;
     private JTextField textField;
     private JPanel keyboard;
     private JPanel panel;
@@ -31,28 +31,12 @@ public class GUI_CardPayment extends JFrame implements KeyListener{
     private JButton btnNewButton_11;
     String cardString;
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        new GUI_CardPayment().setVisible(true);
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    GUI_CardPayment window = new GUI_CardPayment();
-                    window.frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
 
     /**
      * Create the application.
      */
-    public GUI_CardPayment() {
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public GUI_CardPayment(GUI_Frame gui_frame) {
+        this.gui_frame = gui_frame;
         showCardPayment();
     }
 
@@ -60,17 +44,15 @@ public class GUI_CardPayment extends JFrame implements KeyListener{
      * Initialize the contents of the frame.
      */
     public void showCardPayment() {
-        frame = new JFrame();
-        frame.setBounds(10, 10, 645, 645);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setLayout(null);
+        this.setLayout(null);
+        this.setBounds(10, 10, 645, 645);
 
 
         textField = new JTextField();
         textField.setHorizontalAlignment(SwingConstants.CENTER);
         textField.setBounds(172, 180, 277, 34);
         textField.setFont(new Font("맑은 고딕", Font.PLAIN, 18));
-        frame.getContentPane().add(textField);
+        this.add(textField);
         textField.setColumns(10);
 
 
@@ -81,7 +63,7 @@ public class GUI_CardPayment extends JFrame implements KeyListener{
             }
         });
         panel.setBounds(197, 301, 221, 70);
-        frame.getContentPane().add(panel);
+        this.add(panel);
         panel.setLayout(new GridLayout(1, 0, 0, 0));
 
         JLabel NameLabel = new JLabel("카드결제");
@@ -90,9 +72,8 @@ public class GUI_CardPayment extends JFrame implements KeyListener{
         NameLabel.setHorizontalAlignment(SwingConstants.CENTER);
         NameLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         NameLabel.setBounds(158, 100, 305, 56);
-        frame.getContentPane().add(NameLabel);
+        this.add(NameLabel);
 
-      
         btnNewButton_2 = new JButton("1");
         btnNewButton_2.addMouseListener(new MouseAdapter() {
             @Override
@@ -148,7 +129,7 @@ public class GUI_CardPayment extends JFrame implements KeyListener{
             }
         });
         panel_1.setBounds(197, 373, 221, 70);
-        frame.getContentPane().add(panel_1);
+        this.add(panel_1);
         panel_1.setLayout(new GridLayout(1, 0, 0, 0));
 
         btnNewButton_4 = new JButton("4");
@@ -206,7 +187,7 @@ public class GUI_CardPayment extends JFrame implements KeyListener{
             }
         });
         panel_2.setBounds(197, 445, 221, 70);
-        frame.getContentPane().add(panel_2);
+        this.add(panel_2);
         panel_2.setLayout(new GridLayout(1, 0, 0, 0));
 
         btnNewButton_7 = new JButton("7");
@@ -272,7 +253,7 @@ public class GUI_CardPayment extends JFrame implements KeyListener{
         });
         btnNewButton_10.setFont(new Font("맑은 고딕", Font.BOLD, 22));
         btnNewButton_10.setBounds(271, 514, 73, 70);
-        frame.getContentPane().add(btnNewButton_10);
+        this.add(btnNewButton_10);
 
 
         btnNewButton_11 = new JButton("Del");
@@ -290,7 +271,7 @@ public class GUI_CardPayment extends JFrame implements KeyListener{
         });
         btnNewButton_11.setFont(new Font("맑은 고딕", Font.BOLD, 22));
         btnNewButton_11.setBounds(345, 514, 73, 70);
-        frame.getContentPane().add(btnNewButton_11);
+        this.add(btnNewButton_11);
 
 
         JButton btnNewButton = new JButton("입력");
@@ -298,13 +279,12 @@ public class GUI_CardPayment extends JFrame implements KeyListener{
             @Override
             public void mouseClicked(MouseEvent e) {
                 cardString = textField.getText();
-                char[] card = cardString.toCharArray();
-                inputCard(card);
+                inputCard(cardString);
             }
         });
         btnNewButton.setBounds(260, 230, 97, 43);
         btnNewButton.setFont(new Font("맑은 고딕", Font.BOLD, 18));
-        frame.getContentPane().add(btnNewButton);
+        this.add(btnNewButton);
 
         JButton cancelButton = new JButton("취소");
         cancelButton.addMouseListener(new MouseAdapter() {
@@ -316,14 +296,15 @@ public class GUI_CardPayment extends JFrame implements KeyListener{
         cancelButton.setHorizontalTextPosition(SwingConstants.CENTER);
         cancelButton.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         cancelButton.setBounds(500, 530, 97, 47);
-        frame.getContentPane().add(cancelButton);
+        this.add(cancelButton);
     }
 
     private void inputCancel() {
+        gui_frame.selectCancel();
     }
 
-    public void inputCard(char[] card){
-
+    public void inputCard(String card){
+        gui_frame.checkCard(card);
     }
     @Override
     public void keyTyped(KeyEvent e) {
