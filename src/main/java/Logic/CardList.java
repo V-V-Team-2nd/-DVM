@@ -13,7 +13,7 @@ public class CardList {
 
     /*  Functionality :
             CardList의 생성자.
-            CardInfo.txt 파일을 읽어 카드 번호, 유효성, 잔액을 생성하여 cardList에 저장한다.
+            ./TextFiles/CardInfo.txt 파일을 읽어 카드 번호, 유효성, 잔액을 생성하여 cardList에 저장한다.
         Requirements of CardInfo.txt :
             반드시 10개의 카드 정보가 있어야한다.
             카드 번호는 반드시 12자리의 숫자로 구성되어야 한다.
@@ -25,7 +25,7 @@ public class CardList {
     CardList(){
         try{
             /* 경로 수정 필요 */
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("CardInfo.txt"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("./TextFiles/CardInfo.txt"));
             String newLine;
 
             for(int i=0;i<10;i++){

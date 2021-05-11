@@ -12,6 +12,8 @@ public class VM {
         return vmID;
     }*/
     VM(){
+        this.vmID = 0;
+        this.vmAddress = null;
         this.isOperating = false;
     }
     public String getVmAddress(){
