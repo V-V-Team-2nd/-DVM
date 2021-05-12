@@ -23,9 +23,6 @@ public class Card {
     public boolean getIsValid(){
         return this.isValid;
     }
-    public int getBalance() {
-        return balance;
-    }
 
     /*public void setCardID(String cardID) {
         this.cardID = cardID;

@@ -274,6 +274,7 @@ public class GUI_VerificationCodeMode extends JPanel implements KeyListener{
             public void mouseClicked(MouseEvent e) {
                 codeString = textField.getText();
                 inputCode(codeString);
+                textField.setText("");
             }
         });
         btnNewButton.setBounds(260, 230, 97, 43);

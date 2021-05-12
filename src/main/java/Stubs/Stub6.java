@@ -17,7 +17,6 @@ public class Stub6 extends Thread{
     Socket send_socket = null;
     Msg sendMsg = null;
 
-
     ObjectInputStream objectInputStream = null;
     ObjectOutputStream objectOutputStream = null;
 

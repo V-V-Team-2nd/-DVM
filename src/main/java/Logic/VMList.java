@@ -5,9 +5,7 @@ public class VMList {
     private VM[] operatingList = new VM[10];
     private int myID;
     private String myAddress;
-    //private boolean[] stockAvailable = new boolean[10];
-    private int count;
-    private int operatingLength;
+
 
     /* Methods */
 
@@ -23,15 +21,6 @@ public class VMList {
             operatingList[i] = new VM();
             operatingList[i].setVmID(i+1);
         }
-        count = 0;
-        operatingLength = 0;
-    }
-
-    public VM[] getOperatingList() {
-        return operatingList;
-    }
-    public int getOperatingLength(){
-        return operatingLength;
     }
     public int getMyID() {
         return myID;
@@ -78,7 +67,6 @@ public class VMList {
     public void deleteVM(int vmID){
         this.operatingList[vmID-1].setVmAddress(null);
         this.operatingList[vmID-1].setIsOperating(false);
-        operatingLength--;
     }
     /*  Functionality :
             다른 자판기로부터 시작 메시지를 받아 해당 자판기의 주소를 업데이트하고,
@@ -89,7 +77,6 @@ public class VMList {
     public void addVM(int vmID, String address){
         this.operatingList[vmID-1].setVmAddress(address);
         this.operatingList[vmID-1].setIsOperating(true);
-        operatingLength++;
         //System.out.println(address + " **** 설정 완료");
     }
 
