@@ -40,6 +40,7 @@ public class GUI_Error extends JPanel implements ActionListener {
         cancelButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                timer.stop();
                 gui_frame.selectCancel();
             }
         });

@@ -66,6 +66,7 @@ public class GUI_ShowVerificationCode extends JPanel implements ActionListener {
     }
 
     private void inputCancel() {
+        timer.stop();
         gui_frame.selectCancel();
     }
     public void setCode(String code){
