@@ -27,7 +27,7 @@ public class GUI_Frame extends JFrame {
         getContentPane().setLayout(null);
 
         controller = new Controller();
-        gui_main = new GUI_Main(this);
+        gui_main = new GUI_Main(this, controller.getBeverages());
         gui_admin = new GUI_Admin(this);
         gui_verificationCodeMode = new GUI_VerificationCodeMode(this);
         gui_cardPayment = new GUI_CardPayment(this);
@@ -37,7 +37,7 @@ public class GUI_Frame extends JFrame {
 //        gui_showVerificationCode = new GUI_ShowVerificationCode(this);*/
         gui_error = new GUI_Error(this);
 
-
+        gui_main.changeButtonColor(controller.getStock());
         this.getContentPane().add(gui_main);
         //this.getContentPane().add(gui_cardPayment);
         this.setVisible(true);
@@ -67,13 +67,15 @@ public class GUI_Frame extends JFrame {
         }
         /* 재고가 없을 경우 */
         else{
-            controller.requestStock();
+            String[] address = controller.requestStock();
+
             this.getContentPane().removeAll();
         }
     }
 
     public void selectCancel(){
         this.getContentPane().removeAll();
+        gui_main.changeButtonColor(controller.getStock());
         this.getContentPane().add(gui_main);
         revalidate();
         repaint();
@@ -132,5 +134,10 @@ public class GUI_Frame extends JFrame {
         }
         revalidate();
         repaint();
+    }
+
+    /* 자판기 목록 중 하나의 DVM을 선택한 경우 호출 */
+    public void selectDVM(int vmID){
+
     }
 }
