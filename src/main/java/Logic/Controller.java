@@ -220,7 +220,14 @@ public class Controller {
         }
     }
 
+    public Beverage[] getBeverages(){
+        return beverages;
+    }
     public String getBeverageName(){
         return beverages[nowMenu].getName();
+    }
+
+    public int[] getStock(){
+        return stock;
     }
 }
