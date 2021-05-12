@@ -22,7 +22,7 @@ public class CardList {
     *   Parameters : void
     *   Return values : void
     * */
-    CardList(){
+    public CardList(){
         try{
             /* 경로 수정 필요 */
             BufferedReader bufferedReader = new BufferedReader(new FileReader("./TextFiles/CardInfo.txt"));
