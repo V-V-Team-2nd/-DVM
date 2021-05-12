@@ -90,5 +90,10 @@ public class VMList {
         this.operatingList[vmID-1].setVmAddress(address);
         this.operatingList[vmID-1].setIsOperating(true);
         operatingLength++;
+        //System.out.println(address + " **** 설정 완료");
+    }
+
+    public String getSelectedVMAddress(int index){
+        return operatingList[index].getVmAddress();
     }
 }

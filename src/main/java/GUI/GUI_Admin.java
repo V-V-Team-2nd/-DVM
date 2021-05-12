@@ -46,14 +46,14 @@ public class GUI_Admin extends JPanel {
         btnNewButton_1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                inputVMOoff();
+                inputVMOff();
             }
         });
         btnNewButton_1.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
         btnNewButton_1.setMaximumSize(new Dimension(100, 100));
         btnNewButton_1.setIconTextGap(7);
-        btnNewButton_1.setBounds(300, 300, 176, 75);
+        btnNewButton_1.setBounds(212, 350, 198, 64);
         this.add(btnNewButton_1);
 
         JButton cancelButton = new JButton("취소");
@@ -73,7 +73,9 @@ public class GUI_Admin extends JPanel {
         gui_frame.selectCancel();
     }
 
-    private void inputVMOoff() {
+    /* to do */
+    private void inputVMOff() {
+        gui_frame.vmOff();
 
     }
 

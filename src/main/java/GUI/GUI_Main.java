@@ -89,28 +89,29 @@ public class GUI_Main extends JPanel {
         for(int i=0;i<20;i++){
             price[i] = new JLabel(Integer.toString(beverages[i].getPrice()));
             price[i].setFont(new Font("맑은 고딕", Font.BOLD, 19));
+            price[i].setHorizontalAlignment(JLabel.CENTER);
         }
 
-        price[0].setBounds(60, 127, 29, 15);
-        price[1].setBounds(188, 127, 29, 15);
-        price[2].setBounds(312, 127, 29, 15);
-        price[3].setBounds(428, 127, 29, 15);
-        price[4].setBounds(551, 127, 29, 15);
-        price[5].setBounds(60, 243, 29, 15);
-        price[6].setBounds(188, 243, 29, 15);
-        price[7].setBounds(312, 243, 29, 15);
-        price[8].setBounds(428, 243, 29, 15);
-        price[9].setBounds(551, 243, 29, 15);
-        price[10].setBounds(60, 374, 29, 15);
-        price[11].setBounds(188, 374, 29, 15);
-        price[12].setBounds(312, 374, 29, 15);
-        price[13].setBounds(428, 374, 29, 15);
-        price[14].setBounds(551, 374, 29, 15);
-        price[15].setBounds(60, 492, 29, 15);
-        price[16].setBounds(188, 492, 29, 15);
-        price[17].setBounds(312, 492, 29, 15);
-        price[18].setBounds(428, 492, 29, 15);
-        price[19].setBounds(551, 492, 29, 15);
+        price[0].setBounds(12, 127, 120, 15);
+        price[1].setBounds(134, 127, 120, 15);
+        price[2].setBounds(255, 127, 120, 15);
+        price[3].setBounds(376, 127, 120, 15);
+        price[4].setBounds(497, 127, 120, 15);
+        price[5].setBounds(12, 243, 120, 15);
+        price[6].setBounds(134, 243, 120, 15);
+        price[7].setBounds(255, 243, 120, 15);
+        price[8].setBounds(376, 243, 120, 15);
+        price[9].setBounds(497, 243, 120, 15);
+        price[10].setBounds(12, 374, 120, 15);
+        price[11].setBounds(134, 374, 120, 15);
+        price[12].setBounds(255, 374, 120, 15);
+        price[13].setBounds(376, 374, 120, 15);
+        price[14].setBounds(497, 374, 120, 15);
+        price[15].setBounds(12, 492, 120, 15);
+        price[16].setBounds(134, 492, 120, 15);
+        price[17].setBounds(255, 492, 120, 15);
+        price[18].setBounds(376, 492, 120, 15);
+        price[19].setBounds(497, 492, 120, 15);
 
 
         for(int i=0;i<20;i++){

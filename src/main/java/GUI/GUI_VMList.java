@@ -1,16 +1,17 @@
 package GUI;
 
-import java.awt.EventQueue;
+import java.awt.*;
 
 import javax.swing.*;
-import java.awt.Color;
 import javax.swing.border.LineBorder;
-import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class GUI_VMList extends JPanel {
 
     private GUI_Frame gui_frame;
     private JList list;
+    private JPanel btnPanel;
 
     /**
      * Create the application.
@@ -29,22 +30,44 @@ public class GUI_VMList extends JPanel {
         lblWkvk.setBounds(159, 76, 305, 56);
         this.add(lblWkvk);
 
-        list = new JList();
+/*        list = new JList();
         list.setBounds(116, 215, 400, 272);
-        this.add(list);
+        this.add(list);*/
+        btnPanel = new JPanel();
+        btnPanel.setBounds(116, 210, 400, 280);
+        btnPanel.setLayout(new GridLayout(10,1));
+        this.add(btnPanel);
 
         JButton cancelButton = new JButton("\uCDE8\uC18C");
         cancelButton.setHorizontalTextPosition(SwingConstants.CENTER);
         cancelButton.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         cancelButton.setBounds(495, 525, 97, 47);
+        cancelButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                gui_frame.selectCancel();
+            }
+        });
         this.add(cancelButton);
     }
 
     /* VMList를 반영하는 함수 */
-    private void showVMList(String[] address) {
-        for(int i=0;i<20;i++){
+    public void showVMList(String[] address) {
+        btnPanel.removeAll();
+
+        for(int i=0;i<10;i++){
             if(!(address[i] == null)){
                 /* 버튼 생성 및 List에 추가하기. */
+                int j = i+1;
+                JButton btn = new JButton(address[i]);
+                btn.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        gui_frame.selectDVM(j);
+                    }
+                });
+                btn.setFont(new Font("맑은 고딕", Font.BOLD, 22));
+                btnPanel.add(btn);
             }
         }
     }

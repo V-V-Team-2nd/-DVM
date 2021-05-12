@@ -12,7 +12,7 @@ public class Msg implements Serializable {
     private String description;
 
     /* Methods */
-    Msg(int si, int di, int t, String d){
+    public Msg(int si, int di, int t, String d){
         this.src_id = si;
         this.dst_id = di;
         this.type = t;
