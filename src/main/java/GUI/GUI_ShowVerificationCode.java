@@ -5,13 +5,16 @@ import java.awt.EventQueue;
 import javax.swing.*;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.border.LineBorder;
 
 
-public class GUI_ShowVerificationCode extends JPanel {
-
+public class GUI_ShowVerificationCode extends JPanel implements ActionListener {
+    private final int ONE_SECOND = 1000;
+    private Timer timer;
     private GUI_Frame gui_frame;
     private JLabel NameLabel;
     private JLabel ShowCodeLabel;
@@ -67,5 +70,14 @@ public class GUI_ShowVerificationCode extends JPanel {
     }
     public void setCode(String code){
         ShowCodeLabel.setText(code);
+        timer = new Timer(this.ONE_SECOND*30, this);
+        timer.setRepeats(false);
+        timer.start();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        timer.stop();
+        gui_frame.selectCancel();
     }
 }

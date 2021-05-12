@@ -95,7 +95,7 @@ public class Controller {
             e.printStackTrace();
         }
         updateStock();
-        //network.requestVmOn(vmList.getMyAddress());
+        network.requestVmOn(vmList.getMyAddress());
     }
 
     /* GUI에서 사용할 interfaces */

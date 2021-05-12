@@ -56,6 +56,11 @@ GUI/GUI_VerificationCodeMode.java
  GUI.GUI_VerificationCodeMode$7
  GUI.GUI_VerificationCodeMode$8
  GUI.GUI_VerificationCodeMode$9
+GUI/GUI_Admin.java
+ GUI.GUI_Admin
+ GUI.GUI_Admin$1
+ GUI.GUI_Admin$2
+ GUI.GUI_Admin$3
 Stubs/Stub6.java
  Stubs.Stub6
 Logic/Beverage.java
@@ -87,9 +92,8 @@ Logic/Card.java
 GUI/GUI_Dispenser.java
  GUI.GUI_Dispenser
  GUI.GUI_Dispenser$1
-GUI/GUI_ShowVerificationCode.java
- GUI.GUI_ShowVerificationCode
- GUI.GUI_ShowVerificationCode$1
+Stubs/Stub8.java
+ Stubs.Stub8
 Stubs/Stub2.java
  Stubs.Stub2
 GUI/GUI_Error.java
@@ -99,20 +103,18 @@ Logic/CardList.java
  Logic.CardList
 Stubs/Stub10.java
  Stubs.Stub10
-GUI/GUI_Frame.java
- GUI.GUI_Frame
+Logic/VM.java
+ Logic.VM
 Logic/VerificationCodeList.java
  Logic.VerificationCodeList
 Logic/Controller.java
  Logic.Controller
 Stubs/Stub5.java
  Stubs.Stub5
-Logic/VM.java
- Logic.VM
-Stubs/Stub8.java
- Stubs.Stub8
-GUI/GUI_Admin.java
- GUI.GUI_Admin
- GUI.GUI_Admin$1
- GUI.GUI_Admin$2
- GUI.GUI_Admin$3
+GUI/GUI_ShowVerificationCode.java
+ GUI.GUI_ShowVerificationCode
+ GUI.GUI_ShowVerificationCode$1
+tests/CardListTest.java
+ tests.CardListTest
+GUI/GUI_Frame.java
+ GUI.GUI_Frame

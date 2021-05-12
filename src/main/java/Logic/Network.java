@@ -114,12 +114,13 @@ public class Network extends Thread {
                     Msg msg = new Msg(myID, i, 1, address);
                     objectOutputStream.writeObject(msg);
                     objectOutputStream.flush();
+                    System.out.println("Send Msg:"+msg.getSrc_id()+" "+msg.getDst_id()+" "+msg.getType()+" "+msg.getDescription());
 
                     /* 응답으로 받은 DVM을 VMList에 추가 */
                     ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
                     Msg receivedMsg = (Msg) objectInputStream.readObject();
                     controller.addVM(i, receivedMsg.getDescription());
-
+                    System.out.println("Receive Msg:"+receivedMsg.getSrc_id()+" "+receivedMsg.getDst_id()+" "+receivedMsg.getType()+" "+receivedMsg.getDescription());
                     socket.close();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -141,6 +142,7 @@ public class Network extends Thread {
                     Msg msg = new Msg(myID, i, 3, null);
                     objectOutputStream.writeObject(msg);
                     objectOutputStream.flush();
+                    System.out.println("Send Msg:"+msg.getSrc_id()+" "+msg.getDst_id()+" "+msg.getType()+" "+msg.getDescription());
 
                     socket.close();
                 } catch (Exception e) {
@@ -177,11 +179,13 @@ public class Network extends Thread {
                     Msg msg = new Msg(myID, i, 4, Integer.toString(beverageID));
                     objectOutputStream.writeObject(msg);
                     objectOutputStream.flush();
+                    System.out.println("Send Msg:"+msg.getSrc_id()+" "+msg.getDst_id()+" "+msg.getType()+" "+msg.getDescription());
 
                     /* 재고 여부가 true인 자판기들을 추가 */
                     ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
                     Msg receivedMsg = (Msg) objectInputStream.readObject();
-                    System.out.println(Boolean.parseBoolean(receivedMsg.getDescription())+"********************************");
+                    System.out.println("Receive Msg:"+receivedMsg.getSrc_id()+" "+receivedMsg.getDst_id()+" "+receivedMsg.getType()+" "+receivedMsg.getDescription());
+
                     if(Boolean.parseBoolean(receivedMsg.getDescription())){
                         availableList[i-1] = true;
                     }
@@ -205,9 +209,12 @@ public class Network extends Thread {
             Msg msg = new Msg(myID,dst_id,6,Integer.toString(beverageID));
             objectOutputStream.writeObject(msg);
             objectOutputStream.flush();
+            System.out.println("Send Msg:"+msg.getSrc_id()+" "+msg.getDst_id()+" "+msg.getType()+" "+msg.getDescription());
 
             ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
             Msg receivedMsg = (Msg) objectInputStream.readObject();
+            System.out.println("Receive Msg:"+receivedMsg.getSrc_id()+" "+receivedMsg.getDst_id()+" "+receivedMsg.getType()+" "+receivedMsg.getDescription());
+
             code = receivedMsg.getDescription();
             socket.close();
 
