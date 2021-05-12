@@ -103,10 +103,9 @@ public class Network extends Thread {
 
 
     public void requestVmOn(String address){
-        boolean[] operating = controller.getOperating();
         Socket socket = null;
         for(int i=1;i<11;i++) {
-            if(operating[i-1]) {
+            if(myID != i) {
                 try {
                     socket = new Socket("localhost", SERVER_PORT_OFFSET + i);
                     ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
@@ -124,6 +123,7 @@ public class Network extends Thread {
                     socket.close();
                 } catch (Exception e) {
                     e.printStackTrace();
+                    System.out.println("ID: "+i+" 자판기가 종료 상태 입니다.");
                 }
             }
         }
