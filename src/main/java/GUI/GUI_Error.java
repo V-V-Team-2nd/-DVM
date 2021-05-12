@@ -35,6 +35,18 @@ public class GUI_Error extends JPanel implements ActionListener
         lblName_1.setFont(new Font("맑은 고딕", Font.BOLD, 25));
         lblName_1.setBounds(159, 181, 308, 65);
         this.add(lblName_1);
+
+        JButton cancelButton = new JButton("취소");
+        cancelButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                inputCancel();
+            }
+        });
+        cancelButton.setHorizontalTextPosition(SwingConstants.CENTER);
+        cancelButton.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+        cancelButton.setBounds(263, 504, 97, 47);
+        add(cancelButton);
     }
 
     /**
