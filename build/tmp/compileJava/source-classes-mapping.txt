@@ -12,8 +12,8 @@ Logic/Card.java
  Logic.Card
 Logic/Beverage.java
  Logic.Beverage
-Logic/VMList.java
- Logic.VMList
+Stubs/Stub5.java
+ Stubs.Stub5
 Logic/VerificationCodeList.java
  Logic.VerificationCodeList
 Stubs/Stub1.java
@@ -57,8 +57,10 @@ Stubs/Stub9.java
  Stubs.Stub9
 Stubs/Stub4.java
  Stubs.Stub4
-Logic/Network.java
- Logic.Network
+GUI/GUI_Main.java
+ GUI.GUI_Main
+ GUI.GUI_Main$1
+ GUI.GUI_Main$2
 GUI/GUI_VerificationCodeMode.java
  GUI.GUI_VerificationCodeMode
  GUI.GUI_VerificationCodeMode$1
@@ -99,20 +101,18 @@ GUI/GUI_CardPayment.java
  GUI.GUI_CardPayment$7
  GUI.GUI_CardPayment$8
  GUI.GUI_CardPayment$9
-Logic/Controller.java
- Logic.Controller
+Stubs/Stub8.java
+ Stubs.Stub8
 GUI/GUI_Admin.java
  GUI.GUI_Admin
  GUI.GUI_Admin$1
  GUI.GUI_Admin$2
  GUI.GUI_Admin$3
-Stubs/Stub5.java
- Stubs.Stub5
-Stubs/Stub8.java
- Stubs.Stub8
+Logic/Network.java
+ Logic.Network
 GUI/GUI_Frame.java
  GUI.GUI_Frame
-GUI/GUI_Main.java
- GUI.GUI_Main
- GUI.GUI_Main$1
- GUI.GUI_Main$2
+Logic/Controller.java
+ Logic.Controller
+Logic/VMList.java
+ Logic.VMList
