@@ -10,7 +10,7 @@ public class Controller {
     private VMList vmList = new VMList();
     private CardList cardList = new CardList();
     private VerificationCodeList verificationCodeList = new VerificationCodeList();
-    private Network network = new Network(this);
+    private Network network;
     private Beverage[] beverages = new Beverage[20];
     private int[] stock = new int[20];
     private int nowMenu;
@@ -28,7 +28,7 @@ public class Controller {
     *   Return values : void
     * */
     public Controller() {
-
+        network = new Network(this);
         /* VM id, address, 관리자 코드 설정. */
         try{
             BufferedReader bufferedReader = new BufferedReader(new FileReader("./TextFiles/VMInfo.txt"));
@@ -43,6 +43,7 @@ public class Controller {
                     System.exit(-1);
                 }
                 vmList.setMyID(id);
+                network.setMyID(id);
             }catch(Exception e){
                 e.printStackTrace();
                 System.exit(-1);
@@ -128,15 +129,16 @@ public class Controller {
         boolean[] availableList = network.requestStock(nowMenu);
         String[] returnList = new String[10];
 
+        for(int i=0;i<10;i++){
+            returnList[i] = null;
+        }
         /* 주소 추가하는 과정 */
         for(int i=0;i<10;i++){
             if(availableList[i]){
-
-            }
-            else{
-                returnList[i] = null;
+                returnList[i] = vmList.getSelectedVMAddress(i);
             }
         }
+
         return returnList;
     }
     /*  Functionality :
@@ -159,11 +161,11 @@ public class Controller {
 
     /*  Functionality :
     *       선결제 대상 자판기에 인증코드 생성을 요청한다.
-    *       인증코드를 응답 받으면 해당 인증코드를 반환하고, 재고가 없어 환불 요청을 받으면 "Refund"를 반환한다.
+    *       인증코드를 응답 받으면 해당 인증코드를 반환하고, 재고가 없어 환불 요청을 받으면 null을 반환한다.
     *   Parameters : cardID
     *   Return values :
     *       인증코드 : 결제 성공
-    *       "Refund" : 환불 됨
+    *       null : 환불 됨
     * */
     public String requestVerificationCode(int selectedDVM) {
         return network.requestVerificationCode(selectedDVM,nowMenu);
@@ -229,5 +231,34 @@ public class Controller {
 
     public int[] getStock(){
         return stock;
+    }
+
+    public String getMyAddress(){
+        return vmList.getMyAddress();
+    }
+    public void deleteVM(int vmID){
+        vmList.deleteVM(vmID);
+    }
+    public void addVM(int vmID, String address){
+        //System.out.println(address);
+        vmList.addVM(vmID, address);
+    }
+    public String makeVerificationCode(int menu){
+        stock[menu]--;
+        /* 인증코드 생성됨 */
+        String code = verificationCodeList.makeVerificationCode(menu);
+        if(code != null){
+            return code;
+        }
+        else{
+            stock[menu]++;
+            return null;
+        }
+    }
+    public void runNetwork(){
+        this.network.run();
+    }
+    public void vmOff(){
+        network.requestVmOff();
     }
 }

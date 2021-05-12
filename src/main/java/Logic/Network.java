@@ -26,20 +26,18 @@ public class Network extends Thread {
 
         ObjectInputStream objectInputStream = null;
         ObjectOutputStream objectOutputStream = null;
-        PrintWriter printWriter = null;
 
-        try{
-            serverSocket = new ServerSocket(SERVER_PORT_OFFSET+this.myID);
+        try {
+            serverSocket = new ServerSocket(SERVER_PORT_OFFSET + this.myID);
             System.out.println("Server Running");
 
-            while(true){
-                socket = serverSocket.accept();
+            while (true) {
+                socket= serverSocket.accept();
                 System.out.println("Client connected");
-                printWriter = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())));
 
                 objectInputStream = new ObjectInputStream(socket.getInputStream());
-                Msg msg = (Msg)objectInputStream.readObject();
-
+                Msg msg = (Msg) objectInputStream.readObject();
+                System.out.println("Receive Msg:"+msg.getSrc_id()+" "+msg.getDst_id()+" "+msg.getType()+" "+msg.getDescription());
                 /* Network 응답 구현부 */
                 int type = msg.getType();
                 /*  this function uses these Msg types.
@@ -48,96 +46,108 @@ public class Network extends Thread {
                         4 : 재고 여부 요청
                         6 : 인증코드 생성 요청
                 * */
-                switch(type){
+                switch (type) {
                     case 1:
+                        /* 해당 자판기를 VMList에 추가하고 주소 응답을 보냄(operating) */
                         objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-                        sendMsg = new Msg(msg.getDst_id(),msg.getSrc_id(),2,"주소");
+                        sendMsg = new Msg(myID, msg.getSrc_id(), 2, controller.getMyAddress());
+                        controller.addVM(msg.getSrc_id(), msg.getDescription());
                         objectOutputStream.writeObject(sendMsg);
                         objectOutputStream.flush();
-                        break;
-
-                    case 2:
-                        //addOperatingList()
                         break;
                     case 3:
-                        //deleteVM
+                        /* 해당 자판기르르 VMList에서 제거함 */
+                        controller.deleteVM(msg.getSrc_id());
                         break;
                     case 4:
+                        /* 재고 여부를 응답함 */
+                        boolean available = controller.checkStock(Integer.parseInt(msg.getDescription()));
                         objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-                        sendMsg = new Msg(msg.getDst_id(),msg.getSrc_id(),5,"재고 유/무");
+                        sendMsg = new Msg(myID, msg.getSrc_id(), 5, Boolean.toString(available));
                         objectOutputStream.writeObject(sendMsg);
                         objectOutputStream.flush();
                         break;
-
-                    case 5:
-                        //receiveStock()
-                        break;
                     case 6:
-                        //checkStockVerification()
-                        /* 해당 제품의 재고가 있으면*/
-                        /***************************************************************/
-                        if(true) {
+                        int menu = Integer.parseInt(msg.getDescription());
+                        boolean stockAvailable = controller.checkStock(menu);
+                        /* 재고가 있으므로 인증코드 생성 */
+                        if (stockAvailable) {
+                            String code = controller.makeVerificationCode(menu);
+                            /* 인증코드 생성 성공 */
+                            if(code != null){
+                                objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+                                sendMsg = new Msg(myID, msg.getSrc_id(), 7, code);         //인증코드 변경 가능
+                            }
+                            /* 인증코드 개수 초과로 생성 실패 */
+                            else{
+                                objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+                                sendMsg = new Msg(myID, msg.getSrc_id(), 8, null);
+                            }
+                        /* 재고가 없어 환불 요청 */
+                        } else {
                             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-                            sendMsg = new Msg(msg.getDst_id(),msg.getSrc_id(),7,"인증코드");
-                            objectOutputStream.writeObject(sendMsg);
-                            objectOutputStream.flush();
-                            break;
-                        }else{
-                            objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-                            sendMsg = new Msg(msg.getDst_id(),msg.getSrc_id(),8,null);
-                            objectOutputStream.writeObject(sendMsg);
-                            objectOutputStream.flush();
-                            break;
+                            sendMsg = new Msg(myID, msg.getSrc_id(), 8, null);
                         }
-
-                    case 7:
-                        //showVerificationCode()
-                        break;
-                    case 8:
-                        //refund()
+                        objectOutputStream.writeObject(sendMsg);
+                        objectOutputStream.flush();
                         break;
                 }
-
-                printWriter.write("ok");
-                printWriter.close();
+                System.out.println("Send Msg:"+sendMsg.getSrc_id()+" "+sendMsg.getDst_id()+" "+sendMsg.getType()+" "+sendMsg.getDescription());
                 socket.close();
             }
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
 
     public void requestVmOn(String address){
-        Socket s = null;
-        try {
-            s = new Socket("localhost",9000+1/*Controller getMy des_id*/);
-            ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
+        Socket socket = null;
+        for(int i=1;i<11;i++) {
+            if(i != myID) {
+                try {
+                    socket = new Socket("localhost", SERVER_PORT_OFFSET + i);
+                    ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
 
-            Msg msg = new Msg(1/*Controller에 getMy src_id*/,1/*Controller getMy des_id*/,1,address);
-            oos.writeObject(msg);
-            oos.flush();
-            s.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+                    Msg msg = new Msg(myID, i, 1, address);
+                    objectOutputStream.writeObject(msg);
+                    objectOutputStream.flush();
+
+                    /* 응답으로 받은 DVM을 VMList에 추가 */
+                    ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+                    Msg receivedMsg = (Msg) objectInputStream.readObject();
+                    controller.addVM(i, receivedMsg.getDescription());
+
+                    socket.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
+
 
     public void requestVmOff(){
-        Socket s = null;
-        try {
-            s = new Socket("localhost",9000+1/*Controller getMy des_id*/);
-            ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
+        Socket socket = null;
+        for(int i=1;i<11;i++) {
+            if(i != myID) {
+                try {
+                    socket = new Socket("localhost", SERVER_PORT_OFFSET + i);
+                    ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
 
-            Msg msg = new Msg(1/*Controller에 getMy src_id*/,1/*Controller getMy des_id*/,3,null);
-            oos.writeObject(msg);
-            oos.flush();
-            s.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+                    Msg msg = new Msg(myID, i, 3, null);
+                    objectOutputStream.writeObject(msg);
+                    objectOutputStream.flush();
+
+                    socket.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
+
 
     /*  Functionality :
             myID를 제외한 1부터 10까지의 DVM에게 모두 음료번호에 대한 재고 여부 요청 메시지를 발송함.
@@ -145,31 +155,37 @@ public class Network extends Thread {
     *   Parameters :
     *   Return values :
     *       null :
-    *       String[] : 재고가 있다고
+    *       boolean[] : 재고가 있다고 응답한 자판기
     * */
     public boolean[] requestStock(int beverageID){
         boolean[] availableList = new boolean[10];
-
-        /*//여기 리턴이 String[]인데 Controller에도 리턴을 이렇게 해서 어떻게 수정할지 모르겠음
-        Socket s = null;
-        try {
-            s = new Socket("localhost",9000+1*//*Controller에 getMy dst_id*//*);
-            ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
-
-            Msg msg = new Msg(1*//*Controller에 getMy src_id*//*,1*//*Controller에 getMy dst_id*//*,4,"음료번호");
-            oos.writeObject(msg);
-            oos.flush();
-            s.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-
-        /* myID를 제외한 1~10번 DVM에 requestStock 메시지를 발송함 */
-        for(int i=1;i<11;i++){
+        Socket socket = null;
+        /* availableList 초기화 */
+        for(int i=0;i<10;i++){
             availableList[i] = false;
-            if(i != myID){
-                /* 해당 DVM의 포트에 연결하여 응답을 차례로 받음 */
+        }
+        /* broadcast로 재고 여부 요청 메시지 발송 */
+        for(int i=1;i<11;i++) {
+            if(i != myID) {
+                try {
+                    socket = new Socket("localhost", SERVER_PORT_OFFSET + i);
+                    ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
 
+                    Msg msg = new Msg(myID, i, 4, Integer.toString(beverageID));
+                    objectOutputStream.writeObject(msg);
+                    objectOutputStream.flush();
+
+                    /* 재고 여부가 true인 자판기들을 추가 */
+                    ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+                    Msg receivedMsg = (Msg) objectInputStream.readObject();
+                    System.out.println(Boolean.parseBoolean(receivedMsg.getDescription())+"********************************");
+                    if(Boolean.parseBoolean(receivedMsg.getDescription())){
+                        availableList[i-1] = true;
+                    }
+                    socket.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
         return availableList;
@@ -177,25 +193,31 @@ public class Network extends Thread {
 
     public String requestVerificationCode(int dst_id, int beverageID){
         /* 보내는 부분 */
-        Socket s = null;
+        String code = null;
+        Socket socket = null;
         try {
-            s = new Socket("localhost",SERVER_PORT_OFFSET+dst_id);
-            ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
+            socket = new Socket("localhost",SERVER_PORT_OFFSET+dst_id);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
 
             Msg msg = new Msg(myID,dst_id,6,Integer.toString(beverageID));
-            oos.writeObject(msg);
-            oos.flush();
-            s.close();
-        } catch (IOException e) {
+            objectOutputStream.writeObject(msg);
+            objectOutputStream.flush();
+
+            ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+            Msg receivedMsg = (Msg) objectInputStream.readObject();
+            code = receivedMsg.getDescription();
+            socket.close();
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        /* 받는 부분 */
-
-        /* 응답 받은 msg type과 description을 보고 인증코드를 반환하거나, "Refund"를 반환함. */
-
         /* 환불 부분 */
-        controller.refund();
-        return "Refund";
+        if(code == null){
+            controller.refund();
+        }
+
+        /* 응답 받은 msg description을 보고 인증코드를 반환하거나, null을 반환함. */
+        return code;
     }
 
     public void setMyID(int id){

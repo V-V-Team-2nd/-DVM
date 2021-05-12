@@ -22,12 +22,12 @@ public class VerificationCodeList {
     /*  Functionality : 중복이 없는 길이가 4인 인증코드를 생성한다.
     *   Parameters : 음료 아이디
     *   Return value :
-    *       true: success
-    *       false: fail */
-    public boolean makeVerificationCode(int beverageID){
+    *       true: 4자리 인증코드
+    *       false: null */
+    public String makeVerificationCode(int beverageID){
         /* 코드의 개수가 이미 1000개 이상이므로 추가 불가 */
         if(codeList.size()>=1000){
-            return false;
+            return null;
         }
 
         while(true){
@@ -46,9 +46,8 @@ public class VerificationCodeList {
             }
             /* 같은 코드가 없어 코드 추가함. */
             codeList.add(new VerificationCode(beverageID, newCode));
-            break;
+            return newCode;
         }
-        return true;
     }
     /*  Functionality :
             parameter로 들어온 code가 codeList에 있는지 확인한다.
