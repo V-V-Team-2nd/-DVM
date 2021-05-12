@@ -280,6 +280,7 @@ public class GUI_CardPayment extends JPanel implements KeyListener{
             public void mouseClicked(MouseEvent e) {
                 cardString = textField.getText();
                 inputCard(cardString);
+
             }
         });
         btnNewButton.setBounds(260, 230, 97, 43);
@@ -305,6 +306,7 @@ public class GUI_CardPayment extends JPanel implements KeyListener{
 
     public void inputCard(String card){
         gui_frame.checkCard(card);
+        textField.setText("");
     }
     @Override
     public void keyTyped(KeyEvent e) {

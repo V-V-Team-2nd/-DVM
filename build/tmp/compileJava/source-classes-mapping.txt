@@ -1,26 +1,3 @@
-Logic/VerificationCode.java
- Logic.VerificationCode
-Logic/Msg.java
- Logic.Msg
-Stubs/MsgSender.java
- Stubs.MsgSender
-Logic/VM.java
- Logic.VM
-Logic/CardList.java
- Logic.CardList
-Logic/Card.java
- Logic.Card
-Logic/Beverage.java
- Logic.Beverage
-Stubs/Stub5.java
- Stubs.Stub5
-Logic/VerificationCodeList.java
- Logic.VerificationCodeList
-Stubs/Stub1.java
- Stubs.Stub1
-GUI/GUI_Dispenser.java
- GUI.GUI_Dispenser
- GUI.GUI_Dispenser$1
 GUI/GUI_Prepay.java
  GUI.GUI_Prepay
  GUI.GUI_Prepay$1
@@ -39,28 +16,28 @@ GUI/GUI_Prepay.java
  GUI.GUI_Prepay$7
  GUI.GUI_Prepay$8
  GUI.GUI_Prepay$9
-GUI/GUI_ShowVerificationCode.java
- GUI.GUI_ShowVerificationCode
- GUI.GUI_ShowVerificationCode$1
 GUI/GUI_VMList.java
  GUI.GUI_VMList
  GUI.GUI_VMList$1
  GUI.GUI_VMList$2
-Stubs/Stub2.java
- Stubs.Stub2
-GUI/GUI_Error.java
- GUI.GUI_Error
- GUI.GUI_Error$1
+Logic/VerificationCode.java
+ Logic.VerificationCode
 Stubs/Stub7.java
  Stubs.Stub7
+Logic/Msg.java
+ Logic.Msg
+Stubs/MsgSender.java
+ Stubs.MsgSender
+Stubs/Stub1.java
+ Stubs.Stub1
 Stubs/Stub9.java
  Stubs.Stub9
 Stubs/Stub4.java
  Stubs.Stub4
-GUI/GUI_Main.java
- GUI.GUI_Main
- GUI.GUI_Main$1
- GUI.GUI_Main$2
+Logic/VMList.java
+ Logic.VMList
+Logic/Network.java
+ Logic.Network
 GUI/GUI_VerificationCodeMode.java
  GUI.GUI_VerificationCodeMode
  GUI.GUI_VerificationCodeMode$1
@@ -81,8 +58,12 @@ GUI/GUI_VerificationCodeMode.java
  GUI.GUI_VerificationCodeMode$9
 Stubs/Stub6.java
  Stubs.Stub6
-Stubs/Stub10.java
- Stubs.Stub10
+Logic/Beverage.java
+ Logic.Beverage
+GUI/GUI_Main.java
+ GUI.GUI_Main
+ GUI.GUI_Main$1
+ GUI.GUI_Main$2
 GUI/GUI_CardPayment.java
  GUI.GUI_CardPayment
  GUI.GUI_CardPayment$1
@@ -101,6 +82,33 @@ GUI/GUI_CardPayment.java
  GUI.GUI_CardPayment$7
  GUI.GUI_CardPayment$8
  GUI.GUI_CardPayment$9
+Logic/Card.java
+ Logic.Card
+GUI/GUI_Dispenser.java
+ GUI.GUI_Dispenser
+ GUI.GUI_Dispenser$1
+GUI/GUI_ShowVerificationCode.java
+ GUI.GUI_ShowVerificationCode
+ GUI.GUI_ShowVerificationCode$1
+Stubs/Stub2.java
+ Stubs.Stub2
+GUI/GUI_Error.java
+ GUI.GUI_Error
+ GUI.GUI_Error$1
+Logic/CardList.java
+ Logic.CardList
+Stubs/Stub10.java
+ Stubs.Stub10
+GUI/GUI_Frame.java
+ GUI.GUI_Frame
+Logic/VerificationCodeList.java
+ Logic.VerificationCodeList
+Logic/Controller.java
+ Logic.Controller
+Stubs/Stub5.java
+ Stubs.Stub5
+Logic/VM.java
+ Logic.VM
 Stubs/Stub8.java
  Stubs.Stub8
 GUI/GUI_Admin.java
@@ -108,11 +116,3 @@ GUI/GUI_Admin.java
  GUI.GUI_Admin$1
  GUI.GUI_Admin$2
  GUI.GUI_Admin$3
-Logic/Network.java
- Logic.Network
-GUI/GUI_Frame.java
- GUI.GUI_Frame
-Logic/Controller.java
- Logic.Controller
-Logic/VMList.java
- Logic.VMList

@@ -70,15 +70,15 @@ public class VerificationCodeList {
         }
         return -1;
     }
-    /*  Functionality : parameter로 들어온 code가 관리자 코드와 일치하는지 확인한다.
+/*    *//*  Functionality : parameter로 들어온 code가 관리자 코드와 일치하는지 확인한다.
      *   Parameters : 인증코드 문자열
      *   Return value :
      *       true : success
-     *       false : fail */
+     *       false : fail *//*
     public boolean checkAdminCode(String code){
         if(this.adminCode.equals(code)) {
             return true;
         }
         return false;
-    }
+    }*/
 }
