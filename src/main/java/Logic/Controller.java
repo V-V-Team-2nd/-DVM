@@ -91,11 +91,11 @@ public class Controller {
                 beverages[i] = new Beverage(i, split[0], Integer.parseInt(split[1]));
             }
             bufferedReader.close();
-        }catch(Exception e){
+        }catch(Exception e) {
             e.printStackTrace();
         }
-
         updateStock();
+        //network.requestVmOn(vmList.getMyAddress());
     }
 
     /* GUI에서 사용할 interfaces */
@@ -260,5 +260,8 @@ public class Controller {
     }
     public void vmOff(){
         network.requestVmOff();
+    }
+    public boolean[] getOperating(){
+        return vmList.getOperating();
     }
 }

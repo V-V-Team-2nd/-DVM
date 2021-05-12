@@ -96,4 +96,11 @@ public class VMList {
     public String getSelectedVMAddress(int index){
         return operatingList[index].getVmAddress();
     }
+    public boolean[] getOperating(){
+        boolean[] operating = new boolean[10];
+        for(int i=0;i<10;i++){
+            operating[i] = operatingList[i].getIsOperating();
+        }
+        return operating;
+    }
 }

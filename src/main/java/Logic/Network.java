@@ -103,9 +103,10 @@ public class Network extends Thread {
 
 
     public void requestVmOn(String address){
+        boolean[] operating = controller.getOperating();
         Socket socket = null;
         for(int i=1;i<11;i++) {
-            if(i != myID) {
+            if(operating[i-1]) {
                 try {
                     socket = new Socket("localhost", SERVER_PORT_OFFSET + i);
                     ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
@@ -129,9 +130,10 @@ public class Network extends Thread {
 
 
     public void requestVmOff(){
+        boolean[] operating = controller.getOperating();
         Socket socket = null;
         for(int i=1;i<11;i++) {
-            if(i != myID) {
+            if(operating[i-1]) {
                 try {
                     socket = new Socket("localhost", SERVER_PORT_OFFSET + i);
                     ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
@@ -158,6 +160,7 @@ public class Network extends Thread {
     *       boolean[] : 재고가 있다고 응답한 자판기
     * */
     public boolean[] requestStock(int beverageID){
+        boolean[] operating = controller.getOperating();
         boolean[] availableList = new boolean[10];
         Socket socket = null;
         /* availableList 초기화 */
@@ -166,7 +169,7 @@ public class Network extends Thread {
         }
         /* broadcast로 재고 여부 요청 메시지 발송 */
         for(int i=1;i<11;i++) {
-            if(i != myID) {
+            if(operating[i-1]) {
                 try {
                     socket = new Socket("localhost", SERVER_PORT_OFFSET + i);
                     ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
