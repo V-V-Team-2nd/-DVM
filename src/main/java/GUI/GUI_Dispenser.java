@@ -42,13 +42,16 @@ public class GUI_Dispenser extends JPanel implements ActionListener
         cancelButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+
                 gui_frame.selectCancel();
+
             }
         });
         cancelButton.setHorizontalTextPosition(SwingConstants.CENTER);
         cancelButton.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         cancelButton.setBounds(263, 504, 97, 47);
         add(cancelButton);
+
 
     }
 
