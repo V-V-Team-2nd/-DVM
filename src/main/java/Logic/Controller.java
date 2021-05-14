@@ -1,5 +1,7 @@
 package Logic;
 
+import GUI.GUI_Frame;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 
@@ -14,6 +16,7 @@ public class Controller {
     private Beverage[] beverages = new Beverage[20];
     private int[] stock = new int[20];
     private int nowMenu;
+    private GUI_Frame gui_frame;
 
     /* Methods */
 
@@ -27,7 +30,8 @@ public class Controller {
     *   Parameters : void
     *   Return values : void
     * */
-    public Controller() {
+    public Controller(GUI_Frame gui_frame) {
+        this.gui_frame = gui_frame;
         network = new Network(this);
         /* VM id, address, 관리자 코드 설정. */
         try{
@@ -153,7 +157,7 @@ public class Controller {
     * */
     public int cardPayment(String cardID){
         int result = cardList.checkCard(cardID, beverages[nowMenu].getPrice());
-        if(result == 0){
+        if(result == 0 && stock[nowMenu] != 0){
             stock[nowMenu]--;
         }
         return result;
@@ -236,6 +240,9 @@ public class Controller {
     public String getMyAddress(){
         return vmList.getMyAddress();
     }
+    public int getMyID(){
+        return vmList.getMyID();
+    }
     public void deleteVM(int vmID){
         vmList.deleteVM(vmID);
     }
@@ -248,6 +255,7 @@ public class Controller {
         /* 인증코드 생성됨 */
         String code = verificationCodeList.makeVerificationCode(menu);
         if(code != null){
+            gui_frame.changeButtonColor();
             return code;
         }
         else{
@@ -260,6 +268,7 @@ public class Controller {
     }
     public void vmOff(){
         network.requestVmOff();
+        System.exit(0);
     }
     public boolean[] getOperating(){
         return vmList.getOperating();

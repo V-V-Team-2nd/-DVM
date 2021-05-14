@@ -16,18 +16,19 @@ public class GUI_Frame extends JFrame {
     private GUI_ShowVerificationCode gui_showVerificationCode = null;
     private GUI_Error gui_error = null;
     private Controller controller = null;
+    private int selectedDVM;
 
     public static void main(String[] args){
         new GUI_Frame();
     }
 
     GUI_Frame(){
-        super("DVM");
+        super();
         setBounds(10, 10, 665, 665);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        controller = new Controller();
+        controller = new Controller(this);
         gui_main = new GUI_Main(this, controller.getBeverages());
         gui_admin = new GUI_Admin(this);
         gui_verificationCodeMode = new GUI_VerificationCodeMode(this);
@@ -38,6 +39,7 @@ public class GUI_Frame extends JFrame {
         gui_showVerificationCode = new GUI_ShowVerificationCode(this);
         gui_error = new GUI_Error(this);
 
+        this.setTitle("DVM " + Integer.toString(controller.getMyID()) + " " + controller.getMyAddress());
         gui_main.changeButtonColor(controller.getStock());
         this.getContentPane().add(gui_main);
         //this.getContentPane().add(gui_cardPayment);
@@ -83,6 +85,11 @@ public class GUI_Frame extends JFrame {
         this.getContentPane().removeAll();
         gui_main.changeButtonColor(controller.getStock());
         this.getContentPane().add(gui_main);
+        revalidate();
+        repaint();
+    }
+    public void changeButtonColor(){
+        gui_main.changeButtonColor(controller.getStock());
         revalidate();
         repaint();
     }
@@ -149,11 +156,19 @@ public class GUI_Frame extends JFrame {
         int result = controller.cardPayment(cardID);
 
         if(result == 0){
-
-            String[] availableList = controller.requestStock();
-            gui_vmList.showVMList(availableList);
-            this.getContentPane().removeAll();
-            this.getContentPane().add(gui_vmList);
+            String code = controller.requestVerificationCode(selectedDVM);
+            /* 환불 요청 */
+            if(code == null){
+                gui_error.start(4);
+                this.getContentPane().removeAll();
+                this.getContentPane().add(gui_error);
+            }
+            /* 인증코드 보여줌 */
+            else{
+                gui_showVerificationCode.setCode(code);
+                this.getContentPane().removeAll();
+                this.getContentPane().add(gui_showVerificationCode);
+            }
         }
         else {
             switch (result) {
@@ -175,24 +190,17 @@ public class GUI_Frame extends JFrame {
 
     /* 자판기 목록 중 하나의 DVM을 선택한 경우 호출 */
     public void selectDVM(int vmID){
-        String code = controller.requestVerificationCode(vmID);
-        /* 환불 요청 */
-        if(code == null){
-            gui_error.start(4);
-            this.getContentPane().removeAll();
-            this.getContentPane().add(gui_error);
-        }
-        /* 인증코드 보여줌 */
-        else{
-            gui_showVerificationCode.setCode(code);
-            this.getContentPane().removeAll();
-            this.getContentPane().add(gui_showVerificationCode);
-        }
+        selectedDVM = vmID;
+        /*결제 요청*/
+        this.getContentPane().removeAll();
+        this.getContentPane().add(gui_prepay);
         revalidate();
         repaint();
+
     }
 
     public void vmOff(){
+        this.setVisible(false);
         controller.vmOff();
     }
 }
