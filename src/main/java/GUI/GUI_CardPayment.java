@@ -302,6 +302,7 @@ public class GUI_CardPayment extends JPanel implements KeyListener{
 
     private void inputCancel() {
         gui_frame.selectCancel();
+        textField.setText("");
     }
 
     public void inputCard(String card){
