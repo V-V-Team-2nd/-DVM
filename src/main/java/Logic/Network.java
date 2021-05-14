@@ -122,7 +122,7 @@ public class Network extends Thread {
                     System.out.println("Receive Msg:"+receivedMsg.getSrc_id()+" "+receivedMsg.getDst_id()+" "+receivedMsg.getType()+" "+receivedMsg.getDescription());
                     socket.close();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    //e.printStackTrace();
                     System.out.println("ID: "+i+" 자판기가 종료 상태 입니다.");
                 }
             }

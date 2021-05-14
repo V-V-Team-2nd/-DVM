@@ -16,7 +16,7 @@ public class VMList {
     *   Parameters : void
     *   Return value : void
     * */
-    VMList(){
+    public VMList(){
         for(int i=0;i<10;i++){
             operatingList[i] = new VM();
             operatingList[i].setVmID(i+1);

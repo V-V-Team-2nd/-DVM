@@ -24,7 +24,7 @@ public class GUI_Error extends JPanel implements ActionListener {
         lblName.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
         lblName.setHorizontalAlignment(SwingConstants.CENTER);
         lblName.setFont(new Font("맑은 고딕", Font.BOLD, 25));
-        lblName.setBounds(159, 256, 308, 122);
+        lblName.setBounds(124, 256, 378, 122);
 
         this.add(lblName);
 
@@ -64,7 +64,8 @@ public class GUI_Error extends JPanel implements ActionListener {
         timer.setRepeats(false);
         switch (errorType) {
             case 1:
-                lblName.setText("유효한 카드가 아닙니다.");
+                lblName.setText("<html>해당 자판기에 재고가 없습니다.<br>환불을 진행합니다.</html>");
+                //lblName.setText("유효한 카드가 아닙니다.");
                 break;
             case 2:
                 lblName.setText("카드의 잔액이 부족합니다.");
@@ -73,7 +74,7 @@ public class GUI_Error extends JPanel implements ActionListener {
                 lblName.setText("유효한 인증코드가 아닙니다.");
                 break;
             case 4:
-                lblName.setText("해당 자판기에 재고가 없습니다. 환불을 진행합니다.");
+                lblName.setText("해당 자판기에 재고가 없습니다.\n환불을 진행합니다.");
                 break;
         }
 
