@@ -302,10 +302,12 @@ public class GUI_Prepay extends JPanel implements KeyListener{
 
     private void inputCancel() {
         gui_frame.selectCancel();
+        textField.setText("");
     }
 
     public void inputCard(String card){
         gui_frame.checkCardPrepay(card);
+        textField.setText("");
 
     }
     @Override

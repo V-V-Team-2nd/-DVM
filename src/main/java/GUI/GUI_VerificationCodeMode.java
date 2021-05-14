@@ -296,10 +296,12 @@ public class GUI_VerificationCodeMode extends JPanel implements KeyListener{
 
     private void inputCancel() {
         gui_frame.selectCancel();
+        textField.setText("");
     }
 
     public void inputCode(String code){
         gui_frame.checkCode(code);
+        textField.setText("");
     }
     @Override
     public void keyTyped(KeyEvent e) {
