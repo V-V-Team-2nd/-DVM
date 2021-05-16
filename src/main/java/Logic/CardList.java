@@ -31,6 +31,16 @@ public class CardList {
             for(int i=0;i<10;i++){
                 newLine = bufferedReader.readLine();
                 String[] split = newLine.split("\\s+");
+                if(split[0].length() != 12){
+                    System.out.println("올바른 카드 형식이 아닙니다.");
+                    System.exit(-1);
+                }
+                try{
+                    Long.parseLong(split[0]);
+                }catch(Exception e){
+                    System.out.println("올바른 카드 형식이 아닙니다.");
+                    System.exit(-1);
+                }
                 cardList[i] = new Card(split[0], Boolean.parseBoolean(split[1]), Integer.parseInt(split[2]));
                 /* cardList[i].setCardID(split[0]);
                 cardList[i].setIsValid(Boolean.parseBoolean(split[1]));

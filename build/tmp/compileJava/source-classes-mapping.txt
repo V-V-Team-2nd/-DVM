@@ -1,61 +1,32 @@
 Logic/Card.java
  Logic.Card
-Logic/Beverage.java
- Logic.Beverage
-Logic/VM.java
- Logic.VM
-tests/CardListTest.java
- tests.CardListTest
-tests/VMListTest.java
- tests.VMListTest
-Logic/VerificationCodeList.java
- Logic.VerificationCodeList
-Logic/VerificationCode.java
- Logic.VerificationCode
-Logic/VMList.java
- Logic.VMList
-Logic/Msg.java
- Logic.Msg
-Logic/CardList.java
- Logic.CardList
-tests/VerificationCodeListTest.java
- tests.VerificationCodeListTest
-Logic/Network.java
- Logic.Network
 GUI/GUI_Dispenser.java
  GUI.GUI_Dispenser
  GUI.GUI_Dispenser$1
-GUI/GUI_Prepay.java
- GUI.GUI_Prepay
- GUI.GUI_Prepay$1
- GUI.GUI_Prepay$10
- GUI.GUI_Prepay$11
- GUI.GUI_Prepay$12
- GUI.GUI_Prepay$13
- GUI.GUI_Prepay$14
- GUI.GUI_Prepay$15
- GUI.GUI_Prepay$16
- GUI.GUI_Prepay$2
- GUI.GUI_Prepay$3
- GUI.GUI_Prepay$4
- GUI.GUI_Prepay$5
- GUI.GUI_Prepay$6
- GUI.GUI_Prepay$7
- GUI.GUI_Prepay$8
- GUI.GUI_Prepay$9
+GUI/GUI_Main.java
+ GUI.GUI_Main
+ GUI.GUI_Main$1
+ GUI.GUI_Main$2
 GUI/GUI_ShowVerificationCode.java
  GUI.GUI_ShowVerificationCode
  GUI.GUI_ShowVerificationCode$1
+tests/VMListTest.java
+ tests.VMListTest
+GUI/GUI_VMList.java
+ GUI.GUI_VMList
+ GUI.GUI_VMList$1
+ GUI.GUI_VMList$2
+Logic/VerificationCode.java
+ Logic.VerificationCode
+GUI/GUI_Error.java
+ GUI.GUI_Error
+ GUI.GUI_Error$1
+Logic/Msg.java
+ Logic.Msg
 GUI/GUI_VerificationCodeMode.java
  GUI.GUI_VerificationCodeMode
  GUI.GUI_VerificationCodeMode$1
  GUI.GUI_VerificationCodeMode$10
- GUI.GUI_VerificationCodeMode$11
- GUI.GUI_VerificationCodeMode$12
- GUI.GUI_VerificationCodeMode$13
- GUI.GUI_VerificationCodeMode$14
- GUI.GUI_VerificationCodeMode$15
- GUI.GUI_VerificationCodeMode$16
  GUI.GUI_VerificationCodeMode$2
  GUI.GUI_VerificationCodeMode$3
  GUI.GUI_VerificationCodeMode$4
@@ -64,36 +35,14 @@ GUI/GUI_VerificationCodeMode.java
  GUI.GUI_VerificationCodeMode$7
  GUI.GUI_VerificationCodeMode$8
  GUI.GUI_VerificationCodeMode$9
-GUI/GUI_VMList.java
- GUI.GUI_VMList
- GUI.GUI_VMList$1
- GUI.GUI_VMList$2
-GUI/GUI_Error.java
- GUI.GUI_Error
- GUI.GUI_Error$1
-GUI/GUI_Frame.java
- GUI.GUI_Frame
-Logic/Controller.java
- Logic.Controller
-GUI/GUI_Main.java
- GUI.GUI_Main
- GUI.GUI_Main$1
- GUI.GUI_Main$2
-GUI/GUI_Admin.java
- GUI.GUI_Admin
- GUI.GUI_Admin$1
- GUI.GUI_Admin$2
- GUI.GUI_Admin$3
+tests/VerificationCodeListTest.java
+ tests.VerificationCodeListTest
+Logic/VMList.java
+ Logic.VMList
 GUI/GUI_CardPayment.java
  GUI.GUI_CardPayment
  GUI.GUI_CardPayment$1
  GUI.GUI_CardPayment$10
- GUI.GUI_CardPayment$11
- GUI.GUI_CardPayment$12
- GUI.GUI_CardPayment$13
- GUI.GUI_CardPayment$14
- GUI.GUI_CardPayment$15
- GUI.GUI_CardPayment$16
  GUI.GUI_CardPayment$2
  GUI.GUI_CardPayment$3
  GUI.GUI_CardPayment$4
@@ -102,3 +51,36 @@ GUI/GUI_CardPayment.java
  GUI.GUI_CardPayment$7
  GUI.GUI_CardPayment$8
  GUI.GUI_CardPayment$9
+GUI/GUI_Admin.java
+ GUI.GUI_Admin
+ GUI.GUI_Admin$1
+ GUI.GUI_Admin$2
+ GUI.GUI_Admin$3
+GUI/GUI_Prepay.java
+ GUI.GUI_Prepay
+ GUI.GUI_Prepay$1
+ GUI.GUI_Prepay$10
+ GUI.GUI_Prepay$2
+ GUI.GUI_Prepay$3
+ GUI.GUI_Prepay$4
+ GUI.GUI_Prepay$5
+ GUI.GUI_Prepay$6
+ GUI.GUI_Prepay$7
+ GUI.GUI_Prepay$8
+ GUI.GUI_Prepay$9
+Logic/Beverage.java
+ Logic.Beverage
+Logic/VM.java
+ Logic.VM
+Logic/VerificationCodeList.java
+ Logic.VerificationCodeList
+Logic/Network.java
+ Logic.Network
+GUI/GUI_Frame.java
+ GUI.GUI_Frame
+tests/CardListTest.java
+ tests.CardListTest
+Logic/CardList.java
+ Logic.CardList
+Logic/Controller.java
+ Logic.Controller
