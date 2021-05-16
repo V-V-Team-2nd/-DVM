@@ -49,7 +49,7 @@ public class Controller {
                 vmList.setMyID(id);
                 network.setMyID(id);
             }catch(Exception e){
-                e.printStackTrace();
+                System.out.println("vmID는 1이상 10 이하의 숫자여야 합니다.");
                 System.exit(-1);
             }
 
@@ -76,6 +76,7 @@ public class Controller {
             }
             else{
                 System.out.println("오류 : 관리자 코드는 6자리의 숫자여야 합니다.");
+                System.exit(-1);
             }
 
             bufferedReader.close();
