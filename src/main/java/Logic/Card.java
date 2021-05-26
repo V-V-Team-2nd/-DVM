@@ -60,9 +60,11 @@ public class Card {
     * */
     public boolean reduceBalance(int amount){
         if(this.balance < amount){
+            System.out.println("잔액 부족. 현재 잔액 : "+balance);
             return false;
         }
         this.balance -= amount;
+        System.out.println("결제 완료. 현재 잔액 : "+balance);
         return true;
     }
 
@@ -73,5 +75,6 @@ public class Card {
     * */
     public void restoreBalance(int amount) {
         this.balance += amount;
+        System.out.println("환불 완료. 현재 잔액 : "+balance);
     }
 }

@@ -92,7 +92,9 @@ public class Network extends Thread {
                         objectOutputStream.flush();
                         break;
                 }
-                System.out.println("Send Msg:"+sendMsg.getSrc_id()+" "+sendMsg.getDst_id()+" "+sendMsg.getType()+" "+sendMsg.getDescription());
+                if(type!=3) {
+                    System.out.println("Send Msg:" + sendMsg.getSrc_id() + " " + sendMsg.getDst_id() + " " + sendMsg.getType() + " " + sendMsg.getDescription());
+                }
                 socket.close();
             }
 

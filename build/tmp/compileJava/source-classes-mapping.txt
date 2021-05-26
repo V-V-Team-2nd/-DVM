@@ -1,5 +1,7 @@
-Logic/Card.java
- Logic.Card
+GUI/GUI_VMList.java
+ GUI.GUI_VMList
+ GUI.GUI_VMList$1
+ GUI.GUI_VMList$2
 GUI/GUI_Dispenser.java
  GUI.GUI_Dispenser
  GUI.GUI_Dispenser$1
@@ -12,10 +14,8 @@ GUI/GUI_ShowVerificationCode.java
  GUI.GUI_ShowVerificationCode$1
 tests/VMListTest.java
  tests.VMListTest
-GUI/GUI_VMList.java
- GUI.GUI_VMList
- GUI.GUI_VMList$1
- GUI.GUI_VMList$2
+tests/CardListTest.java
+ tests.CardListTest
 Logic/VerificationCode.java
  Logic.VerificationCode
 GUI/GUI_Error.java
@@ -74,13 +74,13 @@ Logic/VM.java
  Logic.VM
 Logic/VerificationCodeList.java
  Logic.VerificationCodeList
+Logic/CardList.java
+ Logic.CardList
+Logic/Card.java
+ Logic.Card
 Logic/Network.java
  Logic.Network
 GUI/GUI_Frame.java
  GUI.GUI_Frame
-tests/CardListTest.java
- tests.CardListTest
-Logic/CardList.java
- Logic.CardList
 Logic/Controller.java
  Logic.Controller
