@@ -54,9 +54,10 @@ public class GUI_VMList extends JPanel {
     /* VMList를 반영하는 함수 */
     public void showVMList(String[] address) {
         btnPanel.removeAll();
-
+        boolean flag = false;
         for(int i=0;i<10;i++){
             if(!(address[i] == null)){
+                flag = true;
                 /* 버튼 생성 및 List에 추가하기. */
                 int j = i+1;
                 JButton btn = new JButton(address[i]);
@@ -69,6 +70,12 @@ public class GUI_VMList extends JPanel {
                 btn.setFont(new Font("맑은 고딕", Font.BOLD, 22));
                 btnPanel.add(btn);
             }
+        }
+        if(!flag){
+            JLabel error = new JLabel("판매 가능한 자판기가 없습니다.");
+            error.setFont(new Font("맑은 고딕", Font.BOLD, 22));
+            error.setHorizontalAlignment(SwingConstants.CENTER);
+            btnPanel.add(error);
         }
     }
 }

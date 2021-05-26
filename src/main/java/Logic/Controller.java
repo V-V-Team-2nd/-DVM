@@ -160,6 +160,7 @@ public class Controller {
         int result = cardList.checkCard(cardID, beverages[nowMenu].getPrice());
         if(result == 0 && stock[nowMenu] != 0){
             stock[nowMenu]--;
+            System.out.println("결제 완료. \""+beverages[nowMenu].getName()+"\" 현재 재고 : " + stock[nowMenu]);
         }
         return result;
     }
@@ -256,6 +257,7 @@ public class Controller {
         /* 인증코드 생성됨 */
         String code = verificationCodeList.makeVerificationCode(menu);
         if(code != null){
+            System.out.println("예약 완료. \""+beverages[menu].getName()+"\" 현재 재고 : " + stock[menu]);
             gui_frame.changeButtonColor();
             return code;
         }
