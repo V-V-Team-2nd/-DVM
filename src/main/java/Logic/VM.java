@@ -11,7 +11,7 @@ public class VM {
     /*public char getVmID(){
         return vmID;
     }*/
-    VM(){
+    public VM(){
         this.vmID = 0;
         this.vmAddress = null;
         this.isOperating = false;

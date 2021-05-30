@@ -7,7 +7,7 @@ public class VerificationCode {
     private String code;
 
     /* Methods */
-    VerificationCode(int id, String code){
+    public VerificationCode(int id, String code){
         this.beverageID = id;
         this.code = code;
     }

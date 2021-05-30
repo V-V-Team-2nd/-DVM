@@ -22,7 +22,7 @@ public class GUI_Frame extends JFrame {
         new GUI_Frame();
     }
 
-    GUI_Frame(){
+    public GUI_Frame(){
         super();
         setBounds(10, 10, 665, 665);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
