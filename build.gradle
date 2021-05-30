@@ -1,7 +1,37 @@
 plugins {
     id 'java'
+    id 'jacoco'
 }
 
+jacoco {
+    toolVersion = '0.8.5'
+}
+
+jacocoTestReport {
+    reports {
+        html.enabled true
+        xml.enabled true
+        csv.enabled true
+    }
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            element = 'CLASS'
+
+            limit {
+                counter = 'BRANCH'
+                value = 'COVEREDRATIO'
+                minimum = 0.30
+            }
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
 group 'org.example'
 version '1.0-SNAPSHOT'
 
@@ -20,6 +50,3 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-test {
-    useJUnitPlatform()
-}

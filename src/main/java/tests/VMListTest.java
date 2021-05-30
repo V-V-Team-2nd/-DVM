@@ -23,4 +23,26 @@ class VMListTest {
         assertEquals(vmList.getSelectedVMAddress(7), "인천공항");
         assertEquals(vmList.getSelectedVMAddress(9), null);
     }
+
+    @Test
+    public void testGetSetMyID(){
+        int id = 3;
+        vmList.setMyID(id);
+        assertEquals(vmList.getMyID(), id);
+        id = 5;
+        vmList.setMyID(id);
+        assertEquals(vmList.getMyID(), id);
+    }
+
+    @Test
+    public void testGetSetMyAddress(){
+        String address = "TestAddress";
+        vmList.setMyAddress(address);
+        assertEquals(vmList.getMyAddress(), address);
+        address = "NewAddress";
+        vmList.setMyAddress(address);
+        assertEquals(vmList.getMyAddress(), address);
+    }
+
+
 }

@@ -1,4 +1,3 @@
-/*
 package tests;
 
 import GUI.GUI_Frame;
@@ -8,7 +7,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ControllerTest {
-    Controller controller = new Controller();
+    GUI_Frame gui_frame = new GUI_Frame();
+    Controller controller = new Controller(gui_frame);
     @Test
     void checkStock() {
 
@@ -68,4 +68,4 @@ class ControllerTest {
         assertNotNull(controller.makeVerificationCode(6));
         assertNotNull(controller.makeVerificationCode(5));
     }
-}*/
+}

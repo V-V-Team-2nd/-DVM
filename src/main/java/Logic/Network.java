@@ -10,7 +10,7 @@ public class Network extends Thread {
     private Controller controller = null;
 
     /* Methods */
-    Network(Controller controller){
+    public Network(Controller controller){
         this.controller = controller;
     }
     /*  Functionality :

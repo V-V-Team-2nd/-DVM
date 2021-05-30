@@ -12,7 +12,7 @@ public class Card {
     *       생성자. 만약 잔액이 음수라면 0으로 설정.
     *   Parameters : 카드번호, 유효성, 잔액
     *   Return values : void */
-    Card(String cardID, boolean isValid, int balance){
+    public Card(String cardID, boolean isValid, int balance){
         this.cardID = cardID;
         this.isValid = isValid;
         this.balance = balance;
