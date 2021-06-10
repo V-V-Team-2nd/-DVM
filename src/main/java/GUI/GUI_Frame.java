@@ -42,7 +42,6 @@ public class GUI_Frame extends JFrame {
         this.setTitle("DVM " + Integer.toString(controller.getMyID()) + " " + controller.getMyAddress());
         gui_main.changeButtonColor(controller.getStock());
         this.getContentPane().add(gui_main);
-        //this.getContentPane().add(gui_cardPayment);
         this.setVisible(true);
         controller.runNetwork();
     }

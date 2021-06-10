@@ -11,7 +11,7 @@ import javax.swing.border.EtchedBorder;
 
 public class GUI_Dispenser extends JPanel implements ActionListener
 {
-    private final int ONE_SECOND = 1000;
+    private static final int ONE_SECOND = 1000;
 
     private GUI_Frame gui_frame;
     private Timer timer;

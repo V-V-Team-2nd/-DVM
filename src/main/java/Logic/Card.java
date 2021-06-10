@@ -24,21 +24,6 @@ public class Card {
         return this.isValid;
     }
 
-    /*public void setCardID(String cardID) {
-        this.cardID = cardID;
-    }
-
-    public void setIsValid(boolean valid) {
-        isValid = valid;
-    }
-
-    public void setBalance(int balance) {
-        this.balance = balance;
-        *//* if (this.balance < 0) {
-            this.balance = 0;
-        }*//*
-    }*/
-
     /*  Functionality :
             인자로 들어온 카드 번호를 cardID와 비교한 후
             일치하면 true, 일치하지 않으면 false를 반환함.

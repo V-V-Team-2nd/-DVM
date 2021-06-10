@@ -10,7 +10,7 @@ import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 
 public class GUI_Error extends JPanel implements ActionListener {
-    private final int ONE_SECOND = 1000;
+    private static final int ONE_SECOND = 1000;
     private Timer timer;
     private GUI_Frame gui_frame;
     private JLabel lblName;

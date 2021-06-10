@@ -31,6 +31,9 @@ jacocoTestCoverageVerification {
 
 test {
     useJUnitPlatform()
+    jacoco{
+        destinationFile = file("$buildDir/jacoco/jacoco.exec")
+    }
 }
 group 'org.example'
 version '1.0-SNAPSHOT'

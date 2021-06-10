@@ -35,7 +35,8 @@ public class Controller {
         network = new Network(this);
         /* VM id, address, 관리자 코드 설정. */
         try{
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("./TextFiles/VMInfo.txt"));
+            FileReader fileReader = new FileReader("./TextFiles/VMInfo.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
             String newLine;
 
             /* vmID setting part */
@@ -68,7 +69,7 @@ public class Controller {
                 try{
                     Integer.parseInt(newLine);
                 }catch(Exception e){
-                    e.printStackTrace();
+                    System.out.println(e.toString());
                     System.out.println("오류 : 관리자 코드는 6자리의 숫자여야 합니다.");
                     System.exit(-1);
                 }
@@ -80,13 +81,15 @@ public class Controller {
             }
 
             bufferedReader.close();
+            fileReader.close();
         } catch(Exception e){
-            e.printStackTrace();
+            System.out.println(e.toString());
         }
 
         /* 음료 설정 부분 */
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("./TextFiles/BeverageInfo.txt"));
+            FileReader fileReader = new FileReader("./TextFiles/BeverageInfo.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
             String newLine;
 
             /* vmID setting part */
@@ -96,8 +99,9 @@ public class Controller {
                 beverages[i] = new Beverage(i, split[0], Integer.parseInt(split[1]));
             }
             bufferedReader.close();
+            fileReader.close();
         }catch(Exception e) {
-            e.printStackTrace();
+            System.out.println(e.toString());
         }
         updateStock();
         network.requestVmOn(vmList.getMyAddress());
@@ -207,7 +211,8 @@ public class Controller {
     public void updateStock(){
         try {
             int count=0;
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("./TextFiles/Stock.txt"));
+            FileReader fileReader = new FileReader("./TextFiles/Stock.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
             String newLine;
 
             /* vmID setting part */
@@ -222,9 +227,11 @@ public class Controller {
                 System.out.println("음료는 7종류만 판매할 수 있습니다.");
                 System.exit(-1);
             }
+
             bufferedReader.close();
+            fileReader.close();
         }catch(Exception e){
-            e.printStackTrace();
+            System.out.println(e.toString());
         }
     }
 
@@ -249,7 +256,6 @@ public class Controller {
         vmList.deleteVM(vmID);
     }
     public void addVM(int vmID, String address){
-        //System.out.println(address);
         vmList.addVM(vmID, address);
     }
     public String makeVerificationCode(int menu){

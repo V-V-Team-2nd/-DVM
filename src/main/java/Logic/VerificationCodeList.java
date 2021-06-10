@@ -2,6 +2,7 @@ package Logic;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 public class VerificationCodeList {
     /* Attributes */
@@ -34,7 +35,8 @@ public class VerificationCodeList {
             /* 랜덤 코드 코드 생성 부분 */
             char[] randCode = new char[4];
             for(int i=0;i<4;i++){
-                randCode[i] = (char)((Math.random()*10) + 48);
+                Random random = new java.security.SecureRandom();
+                randCode[i] = (char)((random.nextInt(10)) + 48);
             }
             String newCode = new String(randCode);
 
