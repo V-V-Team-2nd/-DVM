@@ -30,16 +30,12 @@ public class VMList {
         return myAddress;
     }
 
-/*    public boolean[] getStockAvailable() {
-        return stockAvailable;
-    }*/
     public void setMyID(int myID){
         this.myID = myID;
     }
     public void setMyAddress(String myAddress) {
         this.myAddress = myAddress;
     }
-    /*public void setCount(int count){ this.count = count; }*/
 
     /*  Functionality :
             다른 자판기로(broadcast) 재고 여부 요청 메시지를 보낸 후
@@ -48,16 +44,11 @@ public class VMList {
     *   Parameters : VM 아이디, 재고 여부
     *   Return values : void
     *  */
-/*    public boolean[] receiveStock(int vmID, boolean available){
-        boolean[] availableList = new boolean[10];
-        return availableList;
-    }*/
+
 
     /* 어떤 함수인지 불명확함.
         addOperatingList와 이름을 명확히 구분할 필요가 있음 */
-/*    public void addVM(int vmID, String address){
 
-    }*/
     /*  Functionality :
             다른 자판기로부터 종료 메시지를 받아 해당 자판기의 주소를 null로 초기화하고,
             작동 중이 아님을 표시한다.
@@ -77,7 +68,6 @@ public class VMList {
     public void addVM(int vmID, String address){
         this.operatingList[vmID-1].setVmAddress(address);
         this.operatingList[vmID-1].setIsOperating(true);
-        //System.out.println(address + " **** 설정 완료");
     }
 
     public String getSelectedVMAddress(int index){

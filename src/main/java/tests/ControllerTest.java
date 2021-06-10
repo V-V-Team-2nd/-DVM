@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class ControllerTest {
     GUI_Frame gui_frame = new GUI_Frame();
     Controller controller = new Controller(gui_frame);
+
     @Test
     void checkStock() {
-
         assertEquals(controller.checkStock(0),true);
         assertEquals(controller.checkStock(1),true);
         assertEquals(controller.checkStock(2),true);
@@ -40,7 +40,6 @@ class ControllerTest {
         assertEquals(controller.cardPayment("888888888888"),2);
         controller.checkStock(6);
         assertEquals(controller.cardPayment("999999999999"),3);
-
     }
 
     @Test

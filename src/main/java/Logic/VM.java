@@ -7,10 +7,6 @@ public class VM {
     private String vmAddress;
     private boolean isOperating;
 
-    /* Methods */
-    /*public char getVmID(){
-        return vmID;
-    }*/
     public VM(){
         this.vmID = 0;
         this.vmAddress = null;

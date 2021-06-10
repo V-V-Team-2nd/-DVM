@@ -25,7 +25,8 @@ public class CardList {
     public CardList(){
         try{
             /* 경로 수정 필요 */
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("./TextFiles/CardInfo.txt"));
+            FileReader fileReader = new FileReader("./TextFiles/CardInfo.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
             String newLine;
 
             for(int i=0;i<10;i++){
@@ -48,8 +49,9 @@ public class CardList {
             }
 
             bufferedReader.close();
+            fileReader.close();
         } catch(Exception e){
-            e.printStackTrace();
+            System.out.println(e.toString());
         }
     }
 

@@ -30,9 +30,6 @@ public class GUI_VMList extends JPanel {
         lblWkvk.setBounds(159, 76, 305, 56);
         this.add(lblWkvk);
 
-/*        list = new JList();
-        list.setBounds(116, 215, 400, 272);
-        this.add(list);*/
         btnPanel = new JPanel();
         btnPanel.setBounds(116, 210, 400, 280);
         btnPanel.setLayout(new GridLayout(10,1));
@@ -56,7 +53,7 @@ public class GUI_VMList extends JPanel {
         btnPanel.removeAll();
         boolean flag = false;
         for(int i=0;i<10;i++){
-            if(!(address[i] == null)){
+            if(address[i] != null){
                 flag = true;
                 /* 버튼 생성 및 List에 추가하기. */
                 int j = i+1;

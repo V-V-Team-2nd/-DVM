@@ -23,6 +23,8 @@ public class Network extends Thread {
         ServerSocket serverSocket = null;
         Socket socket = null;
         Msg sendMsg = null;
+        String receivePrinter = "Receive Msg:";
+        String sendPrinter = "Send Msg:";
 
         ObjectInputStream objectInputStream = null;
         ObjectOutputStream objectOutputStream = null;
@@ -37,7 +39,7 @@ public class Network extends Thread {
 
                 objectInputStream = new ObjectInputStream(socket.getInputStream());
                 Msg msg = (Msg) objectInputStream.readObject();
-                System.out.println("Receive Msg:"+msg.getSrc_id()+" "+msg.getDst_id()+" "+msg.getType()+" "+msg.getDescription());
+                System.out.println(receivePrinter+msg.getSrc_id()+" "+msg.getDst_id()+" "+msg.getType()+" "+msg.getDescription());
                 /* Network 응답 구현부 */
                 int type = msg.getType();
                 /*  this function uses these Msg types.
@@ -91,40 +93,50 @@ public class Network extends Thread {
                         objectOutputStream.writeObject(sendMsg);
                         objectOutputStream.flush();
                         break;
+                    default:
+                        break;
+
                 }
-                if(type!=3) {
-                    System.out.println("Send Msg:" + sendMsg.getSrc_id() + " " + sendMsg.getDst_id() + " " + sendMsg.getType() + " " + sendMsg.getDescription());
+                objectOutputStream.close();
+                objectInputStream.close();
+                if(type!=3 && sendMsg != null) {
+                    System.out.println(sendPrinter + sendMsg.getSrc_id() + " " + sendMsg.getDst_id() + " " + sendMsg.getType() + " " + sendMsg.getDescription());
                 }
                 socket.close();
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.toString());
         }
     }
 
 
     public void requestVmOn(String address){
         Socket socket = null;
+        String receivePrinter = "Receive Msg";
+        String sendPrinter = "Send Msg";
+        String localhost = "localhost";
         for(int i=1;i<11;i++) {
             if(myID != i) {
                 try {
-                    socket = new Socket("localhost", SERVER_PORT_OFFSET + i);
+                    socket = new Socket(localhost, SERVER_PORT_OFFSET + i);
                     ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
 
                     Msg msg = new Msg(myID, i, 1, address);
                     objectOutputStream.writeObject(msg);
                     objectOutputStream.flush();
-                    System.out.println("Send Msg:"+msg.getSrc_id()+" "+msg.getDst_id()+" "+msg.getType()+" "+msg.getDescription());
+                    System.out.println(sendPrinter+msg.getSrc_id()+" "+msg.getDst_id()+" "+msg.getType()+" "+msg.getDescription());
 
                     /* 응답으로 받은 DVM을 VMList에 추가 */
                     ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
                     Msg receivedMsg = (Msg) objectInputStream.readObject();
                     controller.addVM(i, receivedMsg.getDescription());
-                    System.out.println("Receive Msg:"+receivedMsg.getSrc_id()+" "+receivedMsg.getDst_id()+" "+receivedMsg.getType()+" "+receivedMsg.getDescription());
+                    System.out.println(receivePrinter+receivedMsg.getSrc_id()+" "+receivedMsg.getDst_id()+" "+receivedMsg.getType()+" "+receivedMsg.getDescription());
+
+                    objectInputStream.close();
+                    objectOutputStream.close();
                     socket.close();
                 } catch (Exception e) {
-                    //e.printStackTrace();
                     System.out.println("ID: "+i+" 자판기가 종료 상태 입니다.");
                 }
             }
@@ -135,20 +147,24 @@ public class Network extends Thread {
     public void requestVmOff(){
         boolean[] operating = controller.getOperating();
         Socket socket = null;
+        String sendPrinter = "Send Msg";
+        String localhost = "localhost";
+
         for(int i=1;i<11;i++) {
             if(operating[i-1]) {
                 try {
-                    socket = new Socket("localhost", SERVER_PORT_OFFSET + i);
+                    socket = new Socket(localhost, SERVER_PORT_OFFSET + i);
                     ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
 
                     Msg msg = new Msg(myID, i, 3, null);
                     objectOutputStream.writeObject(msg);
                     objectOutputStream.flush();
-                    System.out.println("Send Msg:"+msg.getSrc_id()+" "+msg.getDst_id()+" "+msg.getType()+" "+msg.getDescription());
+                    System.out.println(sendPrinter+msg.getSrc_id()+" "+msg.getDst_id()+" "+msg.getType()+" "+msg.getDescription());
 
+                    objectOutputStream.close();
                     socket.close();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    System.out.println(e.toString());
                 }
             }
         }
@@ -167,6 +183,10 @@ public class Network extends Thread {
         boolean[] operating = controller.getOperating();
         boolean[] availableList = new boolean[10];
         Socket socket = null;
+        String receivePrinter = "Receive Msg";
+        String sendPrinter = "Send Msg";
+        String localhost = "localhost";
+
         /* availableList 초기화 */
         for(int i=0;i<10;i++){
             availableList[i] = false;
@@ -175,25 +195,27 @@ public class Network extends Thread {
         for(int i=1;i<11;i++) {
             if(operating[i-1]) {
                 try {
-                    socket = new Socket("localhost", SERVER_PORT_OFFSET + i);
+                    socket = new Socket(localhost, SERVER_PORT_OFFSET + i);
                     ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
 
                     Msg msg = new Msg(myID, i, 4, Integer.toString(beverageID));
                     objectOutputStream.writeObject(msg);
                     objectOutputStream.flush();
-                    System.out.println("Send Msg:"+msg.getSrc_id()+" "+msg.getDst_id()+" "+msg.getType()+" "+msg.getDescription());
+                    System.out.println(sendPrinter+msg.getSrc_id()+" "+msg.getDst_id()+" "+msg.getType()+" "+msg.getDescription());
 
                     /* 재고 여부가 true인 자판기들을 추가 */
                     ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
                     Msg receivedMsg = (Msg) objectInputStream.readObject();
-                    System.out.println("Receive Msg:"+receivedMsg.getSrc_id()+" "+receivedMsg.getDst_id()+" "+receivedMsg.getType()+" "+receivedMsg.getDescription());
+                    System.out.println(receivePrinter+receivedMsg.getSrc_id()+" "+receivedMsg.getDst_id()+" "+receivedMsg.getType()+" "+receivedMsg.getDescription());
 
                     if(Boolean.parseBoolean(receivedMsg.getDescription())){
                         availableList[i-1] = true;
                     }
+                    objectInputStream.close();
+                    objectOutputStream.close();
                     socket.close();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    System.out.println(e.toString());
                 }
             }
         }
@@ -204,24 +226,29 @@ public class Network extends Thread {
         /* 보내는 부분 */
         String code = null;
         Socket socket = null;
+        String receivePrinter = "Receive Msg";
+        String sendPrinter = "Send Msg";
+        String localhost = "localhost";
         try {
-            socket = new Socket("localhost",SERVER_PORT_OFFSET+dst_id);
+            socket = new Socket(localhost,SERVER_PORT_OFFSET+dst_id);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
 
             Msg msg = new Msg(myID,dst_id,6,Integer.toString(beverageID));
             objectOutputStream.writeObject(msg);
             objectOutputStream.flush();
-            System.out.println("Send Msg:"+msg.getSrc_id()+" "+msg.getDst_id()+" "+msg.getType()+" "+msg.getDescription());
+            System.out.println(sendPrinter+msg.getSrc_id()+" "+msg.getDst_id()+" "+msg.getType()+" "+msg.getDescription());
 
             ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
             Msg receivedMsg = (Msg) objectInputStream.readObject();
-            System.out.println("Receive Msg:"+receivedMsg.getSrc_id()+" "+receivedMsg.getDst_id()+" "+receivedMsg.getType()+" "+receivedMsg.getDescription());
+            System.out.println(receivePrinter+receivedMsg.getSrc_id()+" "+receivedMsg.getDst_id()+" "+receivedMsg.getType()+" "+receivedMsg.getDescription());
 
             code = receivedMsg.getDescription();
+            objectInputStream.close();
+            objectOutputStream.close();
             socket.close();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.toString());
         }
         /* 환불 부분 */
         if(code == null){
@@ -235,50 +262,5 @@ public class Network extends Thread {
     public void setMyID(int id){
         this.myID = id;
     }
-
-/*    public String[] requestStock(int beverageID){
-        String[] stockAvailable = new String[10];
-
-        return stockAvailable;
-    }
-
-    public void sendVerificationCode(String code){
-
-        Socket s = null;
-        try {
-            s = new Socket("localhost",9000+1Controller getMy des_id);
-            ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
-
-            Msg msg = new Msg(1Controller에 getMy src_id,1Controller getMy des_id,7,"음료번호");
-            oos.writeObject(msg);
-            oos.flush();
-            s.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-
-    public void requestRefund(){
-        Socket s = null;
-        try {
-            s = new Socket("localhost",9000+dst_id);
-            ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
-
-            Msg msg = new Msg(1Controller에 getMy src_id,dst_id,6,"음료번호");
-            oos.writeObject(msg);
-            oos.flush();
-            s.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public void sendOperating(String address){
-
-    }*/
-
 
 }
